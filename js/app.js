@@ -108,7 +108,11 @@ new Vue({
             'balance': gained - lost
           };
         });
-      return scoredPlayerList;
+      return _.chain(scoredPlayerList).sortBy(function(result){
+        return -result.points;
+      }).sortBy(function(result){
+        return -result.balance;
+      });
     }
   },
   asyncData: function(resolve) {
