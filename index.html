@@ -12,22 +12,24 @@
     <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <script type="x-template" id="top-scorers-template">
-          <div class="col-lg-4 col-lg-offset-4">
+          <div class="col-lg-5 col-lg-offset-2">
             <h2>Top scorers</h2>
-            <span v-for="player in scorers">
-              <div class="row">
-                <div class="col-sm-offset-4 col-sm-2">
-                {{player.name}}
-              </div>
-                <div class="col-lg-4 col-sm-2">
-                {{player.goals}}
-                </div>
-              </div>
-            </span>
+            <table class="results">
+            <tr>
+              <th>Pos.</th>
+              <th>Player</th>
+              <th>Goals</th>
+            </tr>
+            <tr v-for="(index,player) in scorers">
+                <td>{{index + 1}}</td>
+              <td>{{player.name}}</td>
+              <td>{{player.goals}}</td>
+            </tr>
+            </table>
       </div>
     </script>
     <script type="x-template" id="results-table-template">
-        <div class="col-lg-4 ">
+        <div class="col-lg-5 ">
           <h2>Results</h2>
             <table class="results">
                 <tr>
