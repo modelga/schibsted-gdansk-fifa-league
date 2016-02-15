@@ -41,7 +41,10 @@ new Vue({
             }, 0)
           };
         });
-      return _.sortBy(scoredPlayerList, 'goals').reverse();
+      return _.chain(scoredPlayerList).sortBy('name')
+      .sortBy(function(pl) {
+        return -pl.goals;
+      }).value();
     },
     table: function() {
       var self = this,
@@ -77,18 +80,19 @@ new Vue({
             }
           }));
           sumGoals = function(scoreA, scoreB) {
-            return parseInt(scoreA.goals) + parseInt(scoreB.goals);
+            return {
+              goals: parseInt(scoreA.goals) + parseInt(scoreB.goals)
+            };
           };
-
           sum = function(a, b) {
             return a + b;
           };
           var gained = (_.reduce(balance.gain, sumGoals, {
             goals: 0
-          }));
+          })).goals;
           var lost = (_.reduce(balance.lost, sumGoals, {
             goals: 0
-          }));
+          })).goals;
 
           return {
             'name': player,
@@ -102,17 +106,18 @@ new Vue({
             'wins': _.filter(points, function(p) {
               return p == 3;
             }).length,
-            'gained' : gained,
-            'lost' : lost,
+            'gained': gained,
+            'lost': lost,
             'total': points.length,
             'balance': gained - lost
           };
         });
-      return _.chain(scoredPlayerList).sortBy(function(result){
-        return -result.points;
-      }).sortBy(function(result){
+      return _.chain(scoredPlayerList).sortBy('name')
+      .sortBy(function(result) {
         return -result.balance;
-      });
+      }).sortBy(function(result) {
+        return -result.points;
+      }).value();
     }
   },
   asyncData: function(resolve) {
