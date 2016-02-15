@@ -1,0 +1,15 @@
+.results {
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+    margin: 0 auto;
+}
+.results tr th, .results tr td {
+    padding: 5px 0;
+}
+.results tr:not(:first-of-type) {
+    border-top: solid 1px #222;
+}
+.results th {
+    text-align: center;
+}
