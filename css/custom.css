@@ -5,11 +5,27 @@
     margin: 0 auto;
 }
 .results tr th, .results tr td {
-    padding: 5px 0;
+    padding: 10px 10px;
 }
 .results tr:not(:first-of-type) {
-    border-top: solid 1px #222;
+}
+
+.results tr:not(:first-of-type):nth-child(2n) {
+     background: rgba(255,255,255,0.1);
+}
+
+.results tr td:nth-child(n+4) {
+     background: rgba(255,255,255,0.1);
+}
+.results tr td:nth-child(1)  {
+     background: rgba(0,66,0,1);
+     padding: 0 3px;
+}
+.results tr td:last-child  {
+     background: rgba(33,22,10,0.5);
+     padding: 0 3px;
 }
 .results th {
     text-align: center;
+    min-width: 30px;
 }

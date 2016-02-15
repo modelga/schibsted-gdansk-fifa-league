@@ -12,8 +12,7 @@
     <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <script type="x-template" id="top-scorers-template">
-      <div class="row">
-          <div class="col-lg-8 col-lg-offset-2">
+          <div class="col-lg-4 col-lg-offset-4">
             <h2>Top scorers</h2>
             <span v-for="player in scorers">
               <div class="row">
@@ -25,23 +24,21 @@
                 </div>
               </div>
             </span>
-          </div>
       </div>
     </script>
     <script type="x-template" id="results-table-template">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
+        <div class="col-lg-4 ">
           <h2>Results</h2>
             <table class="results">
                 <tr>
-                    <th>Position</th>
+                    <th>Pos.</th>
                     <th>Player</th>
                     <th>Matches</th>
-                    <th>Points</th>
                     <th>W</th>
                     <th>D</th>
                     <th>L</th>
                     <th>Goals</th>
+                    <th>Points</th>
                 </tr>
                 <tr v-for="(index,player) in table">
                   <td>
@@ -49,15 +46,14 @@
                   </td>
                   <td>{{player.name }}</td>
                   <td>{{player.total }}</td>
-                  <td>{{player.points }}</td>
                   <td>{{player.wins }}</td>
                   <td>{{player.draws }}</td>
                   <td>{{player.losses }}</td>
                   <td>{{player.gained }} - {{player.lost }}</td>
+                  <td>{{player.points }}</td>
                 </tr>
             </table>
         </div>
-    </div>
     </script>
   </head>
   <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
@@ -73,27 +69,8 @@
             </a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-            <ul class="nav navbar-nav">
-                <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                <li class="hidden">
-                    <a href="#page-top"></a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#results">Results</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#top-scorers">Top scorers</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#contribute">Contribute</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
+
     </div>
-    <!-- /.container -->
 </nav>
 
 <!-- Intro Header -->
@@ -112,12 +89,12 @@
 
 <!-- About Section -->
 <section id="results" class="container content-section text-center">
-    <results></results>
+  <div class="row">
+    <table-of-results></table-of-results>
+    <top-scorers></top-scorers>
+  </div>
 </section>
 
-<section id="top-scorers" class="container content-section text-center">
-    <top-scorers></top-scorers>
-</section>
 
 <!-- Contact Section -->
 <section id="contribute" class="container content-section text-center">
@@ -212,6 +189,9 @@
     <script src="js/vue.async.data.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.7.0/vue-resource.min.js"></script>
+
+    <script src="js/table-of-results.js"></script>
+    <script src="js/top-scorers.js"></script>
 
     <script src="js/app.js"></script>
 
