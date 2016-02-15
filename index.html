@@ -119,47 +119,62 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
             <h2>Fell free to contribute on <a href="https://github.com/modelga/schibsted-gdansk-fifa-league">github.com</a></h2>
-          </div>
-
+  </div>
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-xs-4  col-lg-offset-1">
       <input type='text' id='name-home'class="form-control"  placeholder='NameHome'>
     </div>
-
-    <div class="col-lg-6">
+    <div class="col-xs-2">
+      <h3>Submit Result</h3>
+    </div>
+    <div class="col-xs-4">
       <input type='text' id='name-away' class="form-control" placeholder='NamaAway'>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-xs-4   col-lg-offset-1">
       <input type='text' id='goals-home' class="form-control"   placeholder='GoalsHome'>
 
     </div>
 
-    <div class="col-lg-6">
+    <div class="col-xs-4   col-lg-offset-2">
       <input type='text' id='goals-away' class="form-control"  placeholder='GoalsAway'>
     </div>
 
-
-    <div class="input-group">
-
   </div>
-   <button onclick="Add()" class="btn btn-primary">Submit</button>
+  <div class="row">
+    <div class="col-xs-4  col-lg-offset-1">
+      <input type='text' id='team-home' class="form-control"   placeholder='Team Home'>
+    </div>
+
+    <div class="col-xs-2">
+            <button onclick="Add()" class="btn btn-primary">Submit</button>
+        </div>
+
+    <div class="col-xs-4 ">
+      <input type='text' id='team-away' class="form-control"  placeholder='Team Away'>
+    </div>
+
+
    <script>
      function Add() {
        var nameAway = document.getElementById('name-away').value;
        var goalsAway = document.getElementById('goals-away').value;
+       var teamHome = document.getElementById('team-away').value;
        var goalsHome = document.getElementById('goals-home').value;
        var nameHome = document.getElementById('name-home').value;
+       var teamHome = document.getElementById('team-home').value;
        var result = {
          away: {
            name: nameAway,
-           goals : parseInt(goalsAway)
+           goals : parseInt(goalsAway),
+           team : teamAway,
          },
          home: {
            name: nameHome,
-           goals: parseInt(goalsHome)
+           goals: parseInt(goalsHome),
+           team: teamHome
          },
          tookAPlace: true,
          date: new Date()
