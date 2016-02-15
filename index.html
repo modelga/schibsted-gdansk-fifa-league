@@ -11,6 +11,54 @@
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <script type="x-template" id="top-scorers-template">
+      <div class="row">
+          <div class="col-lg-8 col-lg-offset-2">
+            <h2>Top scorers</h2>
+            <span v-for="player in scorers">
+              <div class="row">
+                <div class="col-sm-offset-4 col-sm-2">
+                {{player.name}}
+              </div>
+                <div class="col-lg-4 col-sm-2">
+                {{player.goals}}
+                </div>
+              </div>
+            </span>
+          </div>
+      </div>
+    </script>
+    <script type="x-template" id="results-table-template">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <h2>Results</h2>
+            <table class="results">
+                <tr>
+                    <th>Position</th>
+                    <th>Player</th>
+                    <th>Matches</th>
+                    <th>Points</th>
+                    <th>W</th>
+                    <th>D</th>
+                    <th>L</th>
+                    <th>Goals</th>
+                </tr>
+                <tr v-for="(index,player) in table">
+                  <td>
+                     {{ index  + 1}}.
+                  </td>
+                  <td>{{player.name }}</td>
+                  <td>{{player.total }}</td>
+                  <td>{{player.points }}</td>
+                  <td>{{player.wins }}</td>
+                  <td>{{player.draws }}</td>
+                  <td>{{player.losses }}</td>
+                  <td>{{player.gained }} - {{player.lost }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    </script>
   </head>
   <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
     <!-- Navigation -->
@@ -64,54 +112,11 @@
 
 <!-- About Section -->
 <section id="results" class="container content-section text-center">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
-          <h2>Results</h2>
-            <table class="results">
-                <tr>
-                    <th>Position</th>
-                    <th>Player</th>
-                    <th>Matches</th>
-                    <th>Points</th>
-                    <th>W</th>
-                    <th>D</th>
-                    <th>L</th>
-                    <th>Goals</th>
-                </tr>
-                <tr v-for="(index,player) in table">
-                  <td>
-                     {{ index  + 1}}.
-                  </td>
-                  <td>{{player.name }}</td>
-                  <td>{{player.total }}</td>
-                  <td>{{player.points }}</td>
-                  <td>{{player.wins }}</td>
-                  <td>{{player.draws }}</td>
-                  <td>{{player.losses }}</td>
-                  <td>{{player.gained }} - {{player.lost }}</td>
-                </tr>
-            </table>
-        </div>
-    </div>
+    <results></results>
 </section>
 
 <section id="top-scorers" class="container content-section text-center">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
-          <h2>Top scorers</h2>
-          <span v-for="player in scorers">
-            <div class="row">
-              <div class="col-sm-offset-4 col-sm-2">
-              {{player.name}}
-            </div>
-              <div class="col-lg-4 col-sm-2">
-              {{player.goals}}
-              </div>
-            </div>
-          </span>
-
-        </div>
-    </div>
+    <top-scorers></top-scorers>
 </section>
 
 <!-- Contact Section -->
@@ -209,6 +214,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.7.0/vue-resource.min.js"></script>
 
     <script src="js/app.js"></script>
+
   </body>
 
 </html>
