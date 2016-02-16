@@ -61,7 +61,7 @@
     <h2>Games</h2>
         <table class="games">
           <tr v-for="game in games">
-            <td class="teamname home">
+            <td class="teamname home" :class="game.home.goals > game.away.goals ? 'winner' : (game.home.goals == game.away.goals ? 'draw' : 'loser' )">
               <h3>{{game.home.name}}</h3>
               <h5>{{game.home.team}}</h5>
             </td>
@@ -74,7 +74,7 @@
             <td>
              <h1>{{game.away.goals}}</h1>
             </td>
-            <td class="teamname away">
+            <td class="teamname away" :class="game.home.goals < game.away.goals ? 'winner' : (game.home.goals == game.away.goals ? 'draw' : 'loser' )">
               <h3>{{game.away.name}}</h3>
               <h5>{{game.away.team}}</h5>
             </td>
