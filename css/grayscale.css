@@ -328,7 +328,9 @@ footer {
 footer p {
     margin: 0;
 }
-
+header{
+  margin-bottom: -385px;
+}
 ::-moz-selection {
     text-shadow: none;
     background: #fcfcfc;

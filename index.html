@@ -57,6 +57,32 @@
             </table>
         </div>
     </script>
+    <script type="x-template" id="games-table-template">
+    <h2>Games</h2>
+        <div>
+        <table class="col-xs-12 games">
+          <tr v-for="game in games">
+            <td class="teamname home">
+              <h3>{{game.home.name}}</h3>
+              <h5>{{game.home.team}}</h5>
+            </td>
+            <td>
+             <h1>{{game.home.goals}}</h1>
+            </td>
+            <td>
+                <h1>:</h1>
+            </td>
+            <td>
+             <h1>{{game.away.goals}}</h1>
+            </td>
+            <td class="teamname away">
+              <h3>{{game.away.name}}</h3>
+              <h5>{{game.away.team}}</h5>
+            </td>
+          </tr>
+        </table>
+        </div>
+    </script>
   </head>
   <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
     <!-- Navigation -->
@@ -89,13 +115,19 @@
     </div>
 </header>
 
-<!-- About Section -->
 <section id="results" class="container content-section text-center">
   <div class="row">
     <table-of-results></table-of-results>
     <top-scorers></top-scorers>
   </div>
 </section>
+
+<section class="container content-section text-center">
+  <div class="row">
+    <games-table></games-table>
+  </div>
+</section>
+
 
 
 <!-- Contact Section -->
@@ -194,6 +226,7 @@
 
     <script src="js/table-of-results.js"></script>
     <script src="js/top-scorers.js"></script>
+    <script src="js/games-table.js"></script>
 
     <script src="js/app.js"></script>
 

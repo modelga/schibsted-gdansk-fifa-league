@@ -34,4 +34,4 @@ Vue.component('top-scorers',Vue.extend({
       }).value();
     }
   }
-}))
+}));
