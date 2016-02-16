@@ -59,8 +59,7 @@
     </script>
     <script type="x-template" id="games-table-template">
     <h2>Games</h2>
-        <div>
-        <table class="col-xs-12 games">
+        <table class="games">
           <tr v-for="game in games">
             <td class="teamname home">
               <h3>{{game.home.name}}</h3>
@@ -81,7 +80,6 @@
             </td>
           </tr>
         </table>
-        </div>
     </script>
   </head>
   <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
