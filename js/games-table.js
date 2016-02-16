@@ -41,7 +41,7 @@ Vue.component("games-table", Vue.extend({
       this._reScroll();
     },
     _reScroll: function(){
-      this.embed.animate({scrollTop: this.$options.scrollSize * this.currentScroll});
+      this.embed.stop().animate({scrollTop: this.$options.scrollSize * this.currentScroll});
     }
   }
 }));
