@@ -29,3 +29,30 @@
     text-align: center;
     min-width: 30px;
 }
+
+
+.games {
+    width: 550px;
+    margin: 0 auto;
+    font-size: 1rem;
+}
+.games tr td{
+    padding: 15px 0;
+}
+.games tr:nth-child(2n + 1) {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.games td h1 {
+    /*line-height: 30px;*/
+    margin: 0;
+    font-size: 3.2em;
+}
+.games td h3 {
+    margin: 0;
+    font-size: 2em;
+}
+.games td h5 {
+    margin: 0;
+    color: #aaa;
+    font-size: 1.2em;
+}
