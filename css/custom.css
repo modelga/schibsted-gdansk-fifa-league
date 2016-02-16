@@ -3,6 +3,8 @@
     max-width: 350px;
     text-align: center;
     margin: 0 auto;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-transform: uppercase;;
 }
 .results tr th, .results tr td {
     padding: 10px 10px;
@@ -18,7 +20,7 @@
      background: rgba(255,255,255,0.1);
 }
 .results tr td:nth-child(1)  {
-     background: rgba(0,66,0,1);
+     background: rgba(0,66,0,0.4);
      padding: 0 3px;
 }
 .results tr td:last-child  {
