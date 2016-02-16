@@ -30,7 +30,6 @@
     min-width: 30px;
 }
 
-
 .games {
     width: 550px;
     margin: 0 auto;
@@ -59,5 +58,68 @@
 .games-scroll{
   overflow: hidden;
   height: 130px;
-
+}
+.map{
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: auto;
+}
+.map td{
+  box-sizing: border-box;
+  line-height: 40px;
+}
+.inner-top{
+  box-sizing: border-box;
+  width: 40px;
+  display:block;
+  float:left;
+}
+.inner-cell{
+  width: 40px;
+  height: 40px;
+  display: block;
+  float:left;
+  overflow:hidden;
+  font-size: 13px;
+  margin:0;
+  padding:0;
+  text-align: center;
+  box-sizing: border-box;
+}
+.inner-left{
+  box-sizing: border-box;
+  line-height: 40px;
+  height: 40px;
+  padding: 0px 10px;
+  text-transform: uppercase;
+}
+.map .own:after{
+  background:black;
+  content:"-";
+}
+.map .own:after{
+  background:black;
+  content:"-";
+}
+.map .played{
+  background: rgba(255, 255, 255, 0.4);
+}
+.map .no-played{
+  background: rgba(200, 200, 200, 0.1);
+}.map .no-played:after{
+  color: rgba(255, 255, 255, 0.15);
+  content:"-";
+}
+.inner-left:nth-child(2n), .inner-top:nth-child(2n) {
+  background: rgba(255, 255, 255, 0.15);
+}
+.games-scroll-control{
+  font-size: 30px;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+.games-scroll-control.inactive{
+  color:  rgba(255, 255, 255, 0.15);
+}
+.games-scroll-control.active:hover{
+  color: yellow;
 }
