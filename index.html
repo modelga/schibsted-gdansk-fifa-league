@@ -191,7 +191,7 @@
            team: teamHome
          },
          tookAPlace: true,
-         date: new Date()
+         date: Date.now()
        };
        fbRef.child('games').push(result);
        console.log(result);
