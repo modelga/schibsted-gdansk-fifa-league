@@ -12,8 +12,8 @@
     <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <script type="x-template" id="top-scorers-template">
-          <div class="col-lg-5 col-lg-offset-2">
-            <h2>Top scorers</h2>
+    <div class="col-lg-5 col-lg-offset-2">
+        <h2>Top scorers</h2>
             <table class="results">
             <tr>
               <th>Pos.</th>
@@ -59,6 +59,7 @@
     </script>
     <script type="x-template" id="games-table-template">
     <h2>Games</h2>
+      <div class="games-scroll">
         <table class="games">
           <tr v-for="game in games">
             <td class="teamname home" :class="game.home.goals > game.away.goals ? 'winner' : (game.home.goals == game.away.goals ? 'draw' : 'loser' )">
@@ -80,6 +81,8 @@
             </td>
           </tr>
         </table>
+      </div>
+      <span @click="up">Up</span> <span @click="down">Down</span>
     </script>
   </head>
   <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
@@ -94,8 +97,6 @@
                 <i class="fa fa-play-circle"></i>  <span class="light">Start</span>
             </a>
         </div>
-
-
     </div>
 </nav>
 

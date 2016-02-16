@@ -56,3 +56,8 @@
     color: #aaa;
     font-size: 1.2em;
 }
+.games-scroll{
+  overflow: hidden;
+  height: 130px;
+
+}
