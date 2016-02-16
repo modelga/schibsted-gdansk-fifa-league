@@ -117,11 +117,12 @@
 .games-scroll-control{
   font-size: 30px;
   transition: all 0.4s ease;
-  cursor: pointer;
 }
 .games-scroll-control.inactive{
   color:  rgba(255, 255, 255, 0.15);
 }
 .games-scroll-control.active:hover{
   color: yellow;
+  cursor: pointer;
+
 }
