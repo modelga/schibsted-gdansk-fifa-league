@@ -3,6 +3,7 @@ Vue.component('top-scorers',Vue.extend({
   events:{
     'on-data' : function(data){
       this.$data = data;
+      this.games = _.toArray(this.games).reverse();
     }
   },
   computed: {
