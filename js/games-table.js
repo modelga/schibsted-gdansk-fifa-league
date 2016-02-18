@@ -6,13 +6,15 @@ Vue.component("games-table", Vue.extend({
   data: function() {
     return {
       currentScroll: 0,
-      games: {},
-      search: ''
+      games: [],
+      search: '',
+      expectedGames:0
     };
   },
   events: {
     'on-data': function(data) {
       this.games = data.games;
+      this.expectedGames = data.players.length * (data.players.length-1)
       this.currentScroll = 0;
       this._reScroll();
     }

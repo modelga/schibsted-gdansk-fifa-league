@@ -76,7 +76,11 @@ Vue.component('table-of-results',Vue.extend({
         return _.chain(scoredPlayerList).sortBy('name')
         .sortBy(function(result) {
           return -result.balance;
-        }).sortBy(function(result) {
+        })
+        .sortBy(function(result) {
+          return -result.gained;
+        })
+        .sortBy(function(result) {
           return -result.points;
         }).value();
       }

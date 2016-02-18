@@ -59,6 +59,7 @@
     </script>
     <script type="x-template" id="games-table-template">
     <h2>Games</h2>
+    <h4>Played {{games.length}} of {{expectedGames}} games</h4>
       <input type="text" class="form-control games-search" placeholder='filter by typing: Player,Opponent' v-model="search"/>
       <span @click="up" class="games-scroll-control" :class="currentScroll != 0 ? 'active' : 'inactive'"><i class="fa fa-angle-double-up"></i></span>
       <div class="games-scroll">
