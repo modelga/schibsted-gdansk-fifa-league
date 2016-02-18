@@ -334,13 +334,13 @@ header{
 ::-moz-selection {
     text-shadow: none;
     background: #fcfcfc;
-    background: rgba(255,255,255,.2);
+    background: rgba(127,127,127,.7);
 }
 
 ::selection {
     text-shadow: none;
     background: #fcfcfc;
-    background: rgba(255,255,255,.2);
+    background: rgba(127,127,127,.4);
 }
 
 img::selection {

@@ -31,11 +31,18 @@
     text-align: center;
     min-width: 30px;
 }
-
+*::slection{
+  background: right: !important;
+}
 .games {
     width: 550px;
     margin: 0 auto;
     font-size: 1rem;
+}
+.games-search {
+    width: 550px;
+    margin: 0 auto;
+
 }
 .games tr td{
     padding: 15px 0;

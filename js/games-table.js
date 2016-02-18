@@ -6,7 +6,8 @@ Vue.component("games-table", Vue.extend({
   data: function() {
     return {
       currentScroll: 0,
-      games: {}
+      games: {},
+      search: ''
     };
   },
   events: {
@@ -25,7 +26,13 @@ Vue.component("games-table", Vue.extend({
       return this.$options.visible * this.$options.scrollSize;
     },
     maxScrolled: function(){
-      return this.games.length - this.$options.visible;
+      return this.filteredGames.length - this.$options.visible;
+    },
+    searchBy : function(){
+      return $.extend(['',''], this.search.split(","));
+    },
+    filteredGames: function(){
+       return this.$eval("games | filterBy searchBy[0] in 'home.name' 'away.name' | filterBy searchBy[1] in 'home.name' 'away.name'");
     }
   },
   methods: {

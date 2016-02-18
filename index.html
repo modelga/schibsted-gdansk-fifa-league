@@ -59,10 +59,12 @@
     </script>
     <script type="x-template" id="games-table-template">
     <h2>Games</h2>
+      <input type="text" class="form-control games-search" placeholder='filter by typing: Player,Opponent' v-model="search"/>
       <span @click="up" class="games-scroll-control" :class="currentScroll != 0 ? 'active' : 'inactive'"><i class="fa fa-angle-double-up"></i></span>
       <div class="games-scroll">
+        <span v-if="filteredGames.length == 0">Not founds matches related to {{searchBy.join(" ")}}</span>
         <table class="games">
-          <tr v-for="game in games">
+          <tr v-for="game in filteredGames">
             <td class="teamname home" :class="game.home.goals > game.away.goals ? 'winner' : (game.home.goals == game.away.goals ? 'draw' : 'loser' )">
               <h3>{{game.home.name}}</h3>
               <h5>{{game.home.team}}</h5>
@@ -166,7 +168,7 @@
   </div>
   <div class="row">
     <div class="col-xs-4  col-lg-offset-1">
-      <input type='text' id='name-home'class="form-control"  placeholder='NameHome'>
+      <input type='text' id='name-home' class="form-control"  placeholder='NameHome'>
     </div>
     <div class="col-xs-2">
       <h3>Submit Result</h3>
