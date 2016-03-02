@@ -1,13 +1,13 @@
-window.fbRef = new Firebase("https://fiery-inferno-4213.firebaseio.com/");
-
-
 Vue.use(VueAsyncData);
 Vue.config.debug = true;
 new Vue({
   el: 'body',
   data: {
     players: [],
-    logged: undefined
+    logged: undefined,
+    toDisplay: '',
+    displayed : 'displayName',
+    fbRef: new Firebase("https://fiery-inferno-4213.firebaseio.com/")
   },
   methods: {
     winner: function(game) {
@@ -23,7 +23,7 @@ new Vue({
       event.preventDefault();
       event.stopPropagation();
       var $vc = this;
-      fbRef.authWithOAuthPopup("github", function(error, authData) {
+      this.fbRef.authWithOAuthPopup("github", function(error, authData) {
         console.log(authData);
       }, {
         remember: "sessionOnly",
@@ -33,21 +33,39 @@ new Vue({
     unAuth: function(event) {
       event.preventDefault();
       event.stopPropagation();
-      fbRef.unAuth();
+      this.fbRef.unauth();
+    },
+    toggleName: function(event) {
+      if (this.displayed == 'displayName') {
+        this.displayed = 'id';
+      } else {
+        this.displayed = 'displayName';
+      }
+      event.preventDefault();
+      event.stopPropagation();
+
+      console.log(this.toDisplay);
     }
   },
-
+  computed: {
+    toDisplay: function() {
+      return this.logged[this.displayed];
+    }
+  },
   asyncData: function(resolve) {
     var self = this;
-    fbRef.root().on('value', function(s) {
+    this.fbRef.root().on('value', function(s) {
       self.$broadcast('on-data', s.val());
     });
-    fbRef.onAuth(function(auth) {
+
+    this.fbRef.onAuth(function(auth) {
       console.log(auth);
       if (auth !== null) {
         self.logged = auth.github;
+        self.displayed = 'displayName';
       } else {
         self.logged = undefined;
+        self.displayName = undefined;
       }
     });
   }

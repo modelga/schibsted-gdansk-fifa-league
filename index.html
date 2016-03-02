@@ -115,6 +115,51 @@
       </div>
      <span @click="down" class="games-scroll-control" :class="currentScroll < maxScrolled  ? 'active' : 'inactive'"> <i class="fa fa-angle-double-down"></i></span>
     </script>
+    <script type="x-template" id="post-result-template">
+      <div class="row">
+    <div class="col-xs-4  col-lg-offset-1">
+      <input type='text' debounce="250" v-model="home.name" class="form-control"  placeholder='NameHome'>
+    </div>
+    <div class="col-xs-2">
+      <h3>Submit Result</h3>
+    </div>
+    <div class="col-xs-4">
+      <input type='text'  debounce="250" v-model="away.name" class="form-control" placeholder='NamaAway'>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-4   col-lg-offset-1">
+      <input type='text'  debounce="250" v-model="home.goals"  class="form-control"   placeholder='GoalsHome'>
+
+    </div>
+<div class="col-xs-2">
+<h5>{{result}}</h5>
+</div>
+    <div class="col-xs-4  ">
+      <input type='text'  debounce="250"  v-model="away.goals" class="form-control"  placeholder='GoalsAway'>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-xs-4  col-lg-offset-1">
+      <input type='text'  debounce="250"  v-model="home.team"  class="form-control"   placeholder='Team Home'>
+    </div>
+
+    <div class="col-xs-2">
+            <button @click="post" :disabled="errors.length > 0" class="btn btn-primary">Submit</button>
+        </div>
+
+    <div class="col-xs-4 ">
+      <input type='text'  debounce="250" v-model="away.team" class="form-control"  placeholder='Team Away'>
+    </div>
+    </div>
+    <span v-for="error in errors">
+      <div class="row">
+<div class="col-xs-12">{{error.msg}}</div>
+      </div>
+      </span>
+    </script>
   </head>
   <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
     <!-- Navigation -->
@@ -129,9 +174,17 @@
             </a>
         </div>
         <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav" v-if="!logged">
+              <li >
+                <a href @click="auth"><i class="fa fa-github"></i> Sing-In</a>
+              </li>
+            </ul>
+            <ul  v-else class="nav navbar-nav">
               <li>
-                <a href @click="auth"><i class="fa fa-github"></i>{{ logInCaption }}</a>
+                <a href @click="toggleName"><i class="fa fa-github"></i> {{ toDisplay }}</a>
+              </li>
+              <li>
+                <a href @click="unAuth"><i class="fa fa-sign-out"></i> Sign-Out</a>
               </li>
         </ul>
         </div>
@@ -178,75 +231,9 @@
     <div class="col-lg-8 col-lg-offset-2">
             <h2>Fell free to contribute on <a href="https://github.com/modelga/schibsted-gdansk-fifa-league">github.com</a></h2>
   </div>
-  <div class="row">
-    <div class="col-xs-4  col-lg-offset-1">
-      <input type='text' id='name-home' class="form-control"  placeholder='NameHome'>
-    </div>
-    <div class="col-xs-2">
-      <h3>Submit Result</h3>
-    </div>
-    <div class="col-xs-4">
-      <input type='text' id='name-away' class="form-control" placeholder='NamaAway'>
-    </div>
+
+   <post-result></post-result>
   </div>
-
-  <div class="row">
-    <div class="col-xs-4   col-lg-offset-1">
-      <input type='text' id='goals-home' class="form-control"   placeholder='GoalsHome'>
-
-    </div>
-
-    <div class="col-xs-4   col-lg-offset-2">
-      <input type='text' id='goals-away' class="form-control"  placeholder='GoalsAway'>
-    </div>
-
-  </div>
-  <div class="row">
-    <div class="col-xs-4  col-lg-offset-1">
-      <input type='text' id='team-home' class="form-control"   placeholder='Team Home'>
-    </div>
-
-    <div class="col-xs-2">
-            <button onclick="Add()" class="btn btn-primary">Submit</button>
-        </div>
-
-    <div class="col-xs-4 ">
-      <input type='text' id='team-away' class="form-control"  placeholder='Team Away'>
-    </div>
-
-
-   <script>
-     function Add() {
-       var nameAway = document.getElementById('name-away').value;
-       var goalsAway = document.getElementById('goals-away').value;
-       var teamAway = document.getElementById('team-away').value;
-       var goalsHome = document.getElementById('goals-home').value;
-       var nameHome = document.getElementById('name-home').value;
-       var teamHome = document.getElementById('team-home').value;
-       var result = {
-         away: {
-           name: nameAway,
-           goals : parseInt(goalsAway),
-           team : teamAway,
-         },
-         home: {
-           name: nameHome,
-           goals: parseInt(goalsHome),
-           team: teamHome
-         },
-         tookAPlace: true,
-         date: Date.now()
-       };
-       fbRef.child('games').push(result);
-       console.log(result);
-       document.getElementById('name-away').value = '';
-       document.getElementById('goals-away').value = '';
-       document.getElementById('goals-home').value = '';
-       document.getElementById('name-home').value = '';
-     }
-   </script>
-        </div>
-    </div>
 </section>
 
     <footer>
@@ -261,6 +248,9 @@
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/grayscale.js"></script>
 
+    <script src="js/array.unique.js"></script>
+
+
     <script src="js/vue.js"></script>
     <script src="js/vue.async.data.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
@@ -270,6 +260,7 @@
     <script src="js/top-scorers.js"></script>
     <script src="js/games-table.js"></script>
     <script src="js/map.js"></script>
+    <script src="js/post-result.js"></script>
 
     <script src="js/app.js"></script>
 
