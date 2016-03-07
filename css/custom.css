@@ -38,6 +38,7 @@
     width: 600px;
     margin: 0 auto;
     font-size: 1rem;
+    position: relative;
 }
 .games-search {
     width: 400px;
@@ -149,4 +150,24 @@
   color: yellow;
   cursor: pointer;
 
+}
+.games .revenge:hover{
+  background: rgba(255,255,255,0.15);
+  cursor:pointer;
+  overflow: hidden;
+  content:"Revenge!";
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.games .revenge:hover::after{
+  position: absolute;
+  display: table-row;
+  height: 65px;
+  content:"Revenge";
+  font-size: 27px;
+text-transform: uppercase;
+  line-height: 65px;
+  left: 0px;
+  right: 0px;
+  text-align: center;
+  background: linear-gradient(90deg, transparent 25%, black 50%, transparent 75%);
 }
