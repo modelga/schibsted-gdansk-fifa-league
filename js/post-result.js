@@ -21,6 +21,18 @@ Vue.component("post-result", Vue.extend({
     'on-data': function(data) {
       this.players = data.players;
       this.teams = this.extractTeams(data.games);
+    },
+    'make-revenge' : function(game){
+      this.away = {
+        name : game.home.name,
+        team : game.away.team,
+        goals : 0
+      };
+      this.home  = {
+        name: game.away.name,
+        team: game.home.team,
+        goals: 0
+      };
     }
   },
   methods: {

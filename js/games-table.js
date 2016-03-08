@@ -51,6 +51,9 @@ Vue.component("games-table", Vue.extend({
     },
     _reScroll: function(){
       this.embed.stop().animate({scrollTop: this.$options.scrollSize * this.currentScroll});
+    },
+    revenge: function(game){
+      this.$root.$broadcast('make-revenge',game);
     }
   }
 }));

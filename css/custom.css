@@ -152,7 +152,6 @@
 
 }
 .games .revenge:hover{
-  background: rgba(255,255,255,0.15);
   cursor:pointer;
   overflow: hidden;
   content:"Revenge!";
