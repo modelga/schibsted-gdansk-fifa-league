@@ -9,3 +9,5 @@ To run project you need to have installed node depenendecies by `npm install`. T
 
 
 ## Development
+
+Because project is served through `gh-pages` all produced dependencies, must be attached to repository, if they are necessery to live with the project. 
