@@ -1,7 +1,9 @@
 Vue.component("result-map", Vue.extend({
-  data: function()  {
+  data: function() {
 
-      return {players: []};
+    return {
+      players: []
+    };
 
   },
   template: $("#result-map-template").text(),
@@ -14,8 +16,14 @@ Vue.component("result-map", Vue.extend({
       if (a.hasOwnProperty(home)) {
         played = a[home].playedWith;
       }
+      var playedFirstGame = function() {
+        if (a.hasOwnProperty(away)) {
+          return a[away].playedWith(home);
+        } else
+          return false;
+      };
       return home != away ?
-        (played(away) ? 'played' : 'no-played')
+        (played(away) ? 'played' : 'no-played' + ' ' + (this.isBottomTriangle(home, away) ? 'possible bottom' : (playedFirstGame() ? 'possible' : 'blocked')))
         : 'own';
     },
     resultsBetween: function(home, away) {
@@ -31,10 +39,28 @@ Vue.component("result-map", Vue.extend({
       } else {
         return "";
       }
+    },
+    isBottomTriangle: function(home, away) {
+      return this.players.indexOf(home) > this.players.indexOf(away);
+    },
+    createGame: function(home, away) {
+      var played = this.played(home, away);
+      if (played.indexOf("possible") !== -1) {
+        this.$root.$broadcast('fill-submit', {
+          home: {
+            name: home,
+            team: ''
+          },
+          away: {
+            name: away,
+            team: ''
+          }
+        });
+      }
     }
   },
-  events:{
-    'on-data' : function(data){
+  events: {
+    'on-data': function(data) {
       this.$data = data;
     }
   },
@@ -45,13 +71,13 @@ Vue.component("result-map", Vue.extend({
           return game.home.name;
         })
         .map(function(value, key) {
-          var w = _.map(value, function(game) {
+          var awayPlayers = _.map(value, function(game) {
             return game.away.name;
           });
           return {
             player: key,
-            playedWith: function(op) {
-              return w.indexOf(op) !== -1;
+            playedWith: function(opponent) {
+              return awayPlayers.indexOf(opponent) !== -1;
             }
           };
         })

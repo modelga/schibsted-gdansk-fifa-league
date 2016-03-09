@@ -8,13 +8,13 @@ Vue.component("games-table", Vue.extend({
       currentScroll: 0,
       games: [],
       search: '',
-      expectedGames:0
+      expectedGames: 0
     };
   },
   events: {
     'on-data': function(data) {
       this.games = data.games;
-      this.expectedGames = data.players.length * (data.players.length-1)
+      this.expectedGames = data.players.length * (data.players.length - 1);
       this.currentScroll = 0;
       this._reScroll();
     }
@@ -23,37 +23,45 @@ Vue.component("games-table", Vue.extend({
     this.embed = $(this.$el.nextSibling.parentElement).find('.games-scroll');
     this.embed.height(this.height);
   },
-  computed:{
-    height: function(){
+  computed: {
+    height: function() {
       return this.$options.visible * this.$options.scrollSize;
     },
-    maxScrolled: function(){
+    maxScrolled: function() {
       return this.filteredGames.length - this.$options.visible;
     },
-    searchBy : function(){
-      return $.extend(['',''], this.search.split(","));
+    searchBy: function() {
+      return $.extend(['', ''], this.search.split(","));
     },
-    filteredGames: function(){
-       return this.$eval("games | filterBy searchBy[0] in 'home.name' 'away.name' | filterBy searchBy[1] in 'home.name' 'away.name'");
+    filteredGames: function() {
+      return this.$eval("games | filterBy searchBy[0] in 'home.name' 'away.name' | filterBy searchBy[1] in 'home.name' 'away.name'");
     }
   },
   methods: {
     up: function() {
-        if(this.currentScroll !== 0){
-          this.currentScroll--;
-        }
-        this._reScroll();
+      if (this.currentScroll !== 0) {
+        this.currentScroll--;
+      }
+      this._reScroll();
     },
     down: function() {
-      if(this.currentScroll < this.maxScrolled)
+      if (this.currentScroll < this.maxScrolled)
         this.currentScroll++;
       this._reScroll();
     },
-    _reScroll: function(){
-      this.embed.stop().animate({scrollTop: this.$options.scrollSize * this.currentScroll});
+    _reScroll: function() {
+      this.embed.stop().animate({
+        scrollTop: this.$options.scrollSize * this.currentScroll
+      });
     },
-    revenge: function(game){
-      this.$root.$broadcast('make-revenge',game);
+    isFirstGame: function(game) {
+      return this.$eval("games | filterBy '" + game.home.name + "' in 'home.name' 'away.name' | filterBy '" + game.away.name + "' in 'home.name' 'away.name'").length < 2;
+
+    },
+    rematch: function(game) {
+      if (this.isFirstGame(game)) {
+        this.$root.$broadcast('fill-submit', game);
+      }
     }
   }
 }));

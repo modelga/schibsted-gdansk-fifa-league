@@ -24,7 +24,6 @@ new Vue({
       event.stopPropagation();
       var $vc = this;
       this.fbRef.authWithOAuthPopup("github", function(error, authData) {
-        console.log(authData);
       }, {
         remember: "sessionOnly",
         scope: "user,gist"
@@ -43,8 +42,6 @@ new Vue({
       }
       event.preventDefault();
       event.stopPropagation();
-
-      console.log(this.toDisplay);
     }
   },
   computed: {
@@ -59,7 +56,6 @@ new Vue({
     });
 
     this.fbRef.onAuth(function(auth) {
-      console.log(auth);
       if (auth !== null) {
         self.logged = auth.github;
         self.displayed = 'displayName';

@@ -127,6 +127,14 @@
   background:black;
   content:"-";
 }
+.map .possible:hover{
+  background: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+}
+.map .blocked:hover{
+  cursor: not-allowed;
+  background: rgba(255, 0, 0, 0.4);
+}
 .map .played{
   background: rgba(255, 255, 255, 0.4);
 }
@@ -151,17 +159,35 @@
   cursor: pointer;
 
 }
-.games .revenge:hover{
-  cursor:pointer;
-  overflow: hidden;
-  content:"Revenge!";
+
+.games .rematch{
   font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
-.games .revenge:hover::after{
+.games .rematch::after{
+  position: absolute;
+  display: table-row;
+  height: 20px;
+  content:"rematch played";
+  font-size: 13px;
+  text-transform: uppercase;
+  line-height: 20px;
+  margin-top: 45px;
+  color: rgba(255,255,255,0.3);
+  left: 0px;
+  right: 0px;
+  text-align: center;
+}
+.games .do-rematch:hover{
+  cursor:pointer;
+  overflow: hidden;
+  content:"";
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.games .do-rematch:hover::after{
   position: absolute;
   display: table-row;
   height: 65px;
-  content:"Revenge";
+  content:"Rematch";
   font-size: 27px;
 text-transform: uppercase;
   line-height: 65px;

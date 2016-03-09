@@ -75,7 +75,7 @@
         <td>
           <div :style="{width: 40*players.length+'px', height: 40*players.length+'px'}">
           <span v-for="home in players">
-            <span class="inner-cell" :class="played(home,away)" v-for="away in players">
+            <span class="inner-cell" :class="played(home, away)" @click="createGame(home,away)" v-for="away in players">
               {{resultsBetween(home, away)}}
             </span>
           </span>
@@ -92,7 +92,7 @@
       <div class="games-scroll">
         <span v-if="filteredGames.length == 0">Not founds matches related to {{searchBy.join(" ")}}</span>
         <table class="games">
-          <tr v-for="game in filteredGames" title class="revenge" @click="revenge(game)">
+          <tr v-for="game in filteredGames" title :class="isFirstGame(game) ? 'do-rematch' : 'rematch'" @click="rematch(game)">
             <td class="teamname home" :class="game.home.goals > game.away.goals ? 'winner' : (game.home.goals == game.away.goals ? 'draw' : 'loser' )">
               <h3>{{game.home.name}}</h3>
               <h5>{{game.home.team}}</h5>

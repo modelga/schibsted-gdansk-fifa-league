@@ -22,7 +22,7 @@ Vue.component("post-result", Vue.extend({
       this.players = data.players;
       this.teams = this.extractTeams(data.games);
     },
-    'make-revenge' : function(game){
+    'fill-submit' : function(game){
       this.away = {
         name : game.home.name,
         team : game.away.team,
