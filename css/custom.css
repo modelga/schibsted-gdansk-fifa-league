@@ -167,12 +167,12 @@
   position: absolute;
   display: table-row;
   height: 20px;
-  content:"rematch played";
+  content:"rematch";
   font-size: 13px;
   text-transform: uppercase;
   line-height: 20px;
   margin-top: 45px;
-  color: rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.3-);
   left: 0px;
   right: 0px;
   text-align: center;

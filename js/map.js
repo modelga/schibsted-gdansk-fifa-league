@@ -48,7 +48,6 @@ Vue.component("result-map", Vue.extend({
       var played = this.played(away, home);
       if (played.indexOf("possible") !== -1) {
         var isRevenge = this.played(home, away).indexOf('no-played') === -1;
-        console.log(isRevenge);
         this.$root.$broadcast('fill-submit', {
           home: {
             name: home,
