@@ -2,7 +2,8 @@ Vue.component("result-map", Vue.extend({
   data: function() {
 
     return {
-      players: []
+      players: [],
+      games:{}
     };
 
   },

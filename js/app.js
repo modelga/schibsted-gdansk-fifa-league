@@ -24,6 +24,7 @@ new Vue({
       event.stopPropagation();
       var $vc = this;
       this.fbRef.authWithOAuthPopup("github", function(error, authData) {
+        console.log(error);
       }, {
         remember: "sessionOnly",
         scope: "user,gist"
@@ -42,6 +43,9 @@ new Vue({
       }
       event.preventDefault();
       event.stopPropagation();
+    },
+    team: function(player){
+      return "";
     }
   },
   computed: {
@@ -52,7 +56,11 @@ new Vue({
   asyncData: function(resolve) {
     var self = this;
     this.fbRef.root().on('value', function(s) {
-      self.$broadcast('on-data', s.val());
+      data = s.val();
+      if(!data.hasOwnProperty("games")){
+        data.games = {};
+      }
+      self.$broadcast('on-data', data);
     });
 
     this.fbRef.onAuth(function(auth) {
