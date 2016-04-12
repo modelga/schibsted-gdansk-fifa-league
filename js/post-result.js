@@ -36,7 +36,6 @@ Vue.component("post-result", Vue.extend({
         team: game.home.team,
         goals: 0
       };
-      console.log(game);
       this.revange = game.revange;
     }
   },
