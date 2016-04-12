@@ -13,6 +13,7 @@ Vue.component("post-result", Vue.extend({
         goals: 0,
         team: ''
       },
+      revange: false,
       players: [],
       teams: []
     };
@@ -22,17 +23,18 @@ Vue.component("post-result", Vue.extend({
       this.players = data.players;
       this.teams = this.extractTeams(data.games);
     },
-    'fill-submit' : function(game){
+    'fill-submit': function(game) {
       this.away = {
-        name : game.home.name,
-        team : game.away.team,
-        goals : 0
+        name: game.home.name,
+        team: game.away.team,
+        goals: 0
       };
-      this.home  = {
+      this.home = {
         name: game.away.name,
         team: game.home.team,
         goals: 0
       };
+      this.revange = game.revange;
     }
   },
   methods: {
@@ -49,8 +51,10 @@ Vue.component("post-result", Vue.extend({
         away: this.away,
         home: this.home,
         tookAPlace: true,
+        revange: this.revange,
         date: Date.now()
       };
+      this._completeTeams();
       this.$root.fbRef.child('games').push(result, function(error) {
         if (!!error) {
           $vm.result = error;
@@ -58,6 +62,24 @@ Vue.component("post-result", Vue.extend({
           $vm.result = "Submitted!";
         }
       });
+    },
+
+    _completeTeams: function() {
+      var $vm = this;
+      if (!this.revange) {
+        [this.away, this.home]
+          .filter(function(team) {
+            return $vm.$root.team(team) === "";
+          }).forEach(function(e) {
+          $vm.$root.fbRef.child('teams/' + e.name).set(
+            {
+              name: e.team,
+              score: 4
+            }
+          );
+
+        });
+      }
     }
   },
   computed: {

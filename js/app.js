@@ -7,7 +7,8 @@ new Vue({
     logged: undefined,
     toDisplay: '',
     displayed : 'displayName',
-    fbRef: new Firebase("https://fiery-inferno-4213.firebaseio.com/")
+    fbRef: new Firebase("https://fiery-inferno-4213.firebaseio.com/"),
+    teams : {}
   },
   methods: {
     winner: function(game) {
@@ -44,13 +45,31 @@ new Vue({
       event.preventDefault();
       event.stopPropagation();
     },
-    team: function(player){
-      return "";
+    team: function(player,value){
+      if(typeof player === "object"){
+        player = player.name;
+      }
+
+      if(typeof value !== 'undefined'){
+        return value;
+      }else{
+        if(this.teams.hasOwnProperty(player)){
+          return this.teams[player].name;
+        }else{
+          return "";
+        }
+      }
     }
   },
   computed: {
     toDisplay: function() {
       return this.logged[this.displayed];
+    }
+  },
+  events : {
+    'on-data': function(data){
+          this.teams = data.teams;
+          this.$broadcast('on-data', data);
     }
   },
   asyncData: function(resolve) {
@@ -60,7 +79,7 @@ new Vue({
       if(!data.hasOwnProperty("games")){
         data.games = {};
       }
-      self.$broadcast('on-data', data);
+      self.$emit('on-data', data);
     });
 
     this.fbRef.onAuth(function(auth) {

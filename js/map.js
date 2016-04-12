@@ -45,17 +45,20 @@ Vue.component("result-map", Vue.extend({
       return this.players.indexOf(home) > this.players.indexOf(away);
     },
     createGame: function(home, away) {
-      var played = this.played(home, away);
+      var played = this.played(away, home);
       if (played.indexOf("possible") !== -1) {
+        var isRevenge = this.played(home, away).indexOf('no-played') === -1;
+        console.log(isRevenge);
         this.$root.$broadcast('fill-submit', {
           home: {
             name: home,
-            team: ''
+            team: this.$root.team(isRevenge ? home : away)
           },
           away: {
             name: away,
-            team: ''
-          }
+            team: this.$root.team(isRevenge ? away : home)
+          },
+          revange: isRevenge
         });
       }
     }
