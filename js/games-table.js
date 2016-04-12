@@ -60,7 +60,12 @@ Vue.component("games-table", Vue.extend({
     },
     rematch: function(game) {
       if (this.isFirstGame(game)) {
-        this.$root.$broadcast('fill-submit', game);
+        var newGame = game;
+        newGame.revange = true;
+        newGame.winner = undefined;
+        newGame.tookAPlace=undefined;
+        newGame.date =undefined;
+        this.$root.$broadcast('fill-submit', JSON.parse(JSON.stringify(newGame)));
       }
     }
   }

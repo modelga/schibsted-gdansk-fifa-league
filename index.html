@@ -124,52 +124,68 @@
      <span @click="down" class="games-scroll-control" :class="currentScroll < maxScrolled  ? 'active' : 'inactive'"> <i class="fa fa-angle-double-down"></i></span>
     </script>
     <script type="x-template" id="post-result-template">
-      <div class="row">
-    <div class="col-xs-4  col-lg-offset-1">
-      <input type='text' debounce="250" v-model="home.name" class="form-control"  placeholder='NameHome'>
-    </div>
-    <div class="col-xs-2">
-      <h3>Submit Result</h3>
-    </div>
-    <div class="col-xs-4">
-      <input type='text'  debounce="250" v-model="away.name" class="form-control" placeholder='NamaAway'>
-    </div>
-  </div>
+    <div id="post-results" v-show="isShowed" transition="modal">
+    <div class="inner">
 
-  <div class="row">
-    <div class="col-xs-4   col-lg-offset-1">
-      <input type='text'  debounce="250" v-model="home.goals"  class="form-control"   placeholder='GoalsHome'>
-
+    <div class="header">
+      <h4>Submit Result</h4>
     </div>
-<div class="col-xs-2">
-<h5>{{result}}</h5>
-</div>
-    <div class="col-xs-4  ">
-      <input type='text'  debounce="250"  v-model="away.goals" class="form-control"  placeholder='GoalsAway'>
-    </div>
-
-  </div>
-  <div class="row">
-    <div class="col-xs-4  col-lg-offset-1">
-      <input type='text'  debounce="250"  v-model="home.team"  class="form-control"   placeholder='Team Home'>
-    </div>
-
-    <div class="col-xs-2">
-            <button @click="post" :disabled="errors.length > 0" class="btn btn-primary">Submit</button>
-        </div>
-
-    <div class="col-xs-4 ">
-      <input type='text'  debounce="250" v-model="away.team" class="form-control"  placeholder='Team Away'>
-    </div>
-    </div>
-    <span v-for="error in errors">
-      <div class="row">
-<div class="col-xs-12">{{error.msg}}</div>
+      <div class="name name-home">
+        <h2>{{home.name}}</h2>
       </div>
+      <div class="name name-away">
+        <h2>{{away.name}}</h2>
+      </div>
+    <div class="goals goals-home">
+      <span class="add-goals" @click="goals('home',1)"><i class="fa fa-angle-double-up"></i></span>
+      <h3>{{home.goals}}</h3>
+      <span class="sub-goals" @click="goals('home',-1)"><i class="fa fa-angle-double-down"></i></span>
+    </div>
+
+    <div class="goals goals-away">
+      <span class="add-goals" @click="goals('away',1)"><i class="fa fa-angle-double-up"></i></span>
+      <h3>{{away.goals}}</h3>
+      <span class="sub-goals" @click="goals('away',-1)"><i class="fa fa-angle-double-down"></i></span>
+    </div>
+
+    <div class="team team-home">
+    <div class="input" v-if="!isLocked(home)">
+      <input type='text' debounce="250" v-model="home.team" class="form-control">
+    </div>
+    <div v-else>
+      <h2>{{home.team}}</h2>
+    </div>
+    </div>
+
+    <div class="team team-away">
+      <div class="input" v-if="!isLocked(away)">
+        <input type='text' debounce="250" v-model="away.team" class="form-control">
+      </div>
+      <div v-else>
+        <h2>{{away.team}}</h2>
+      </div>
+    </div>
+
+    <div class="submit">
+            <button @click="post" :disabled="errors.length > 0" class="btn btn-primary">Submit</button>
+    </div>
+
+    <div class="submit-result">
+    <h5>{{result}}</h5>
+    </div>
+
+    <div class="errors">
+      <span v-for="error in errors">
+          {{error.msg}}
       </span>
+    </div>
+    <span class="close" @click="hide()"><i class="fa fa-times" aria-hidden="true"></i></span>
+  </div>
+  </div>
     </script>
   </head>
   <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <div class="whole">
     <!-- Navigation -->
 <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
     <div class="container">
@@ -240,7 +256,6 @@
             <h2>Fell free to contribute on <a href="https://github.com/modelga/schibsted-gdansk-fifa-league">github.com</a></h2>
   </div>
 
-   <post-result></post-result>
   </div>
 </section>
 
@@ -249,6 +264,9 @@
                <p>Schibsted Tech Polska @ 2016</p>
            </div>
     </footer>
+</div>
+    <post-result></post-result>
+
     <script src="https://cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
 
     <script src="js/jquery.js"></script>

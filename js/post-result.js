@@ -3,6 +3,7 @@ Vue.component("post-result", Vue.extend({
   data: function() {
     return {
       result: undefined,
+      isShowed: false,
       away: {
         name: '',
         goals: 0,
@@ -24,6 +25,7 @@ Vue.component("post-result", Vue.extend({
       this.teams = this.extractTeams(data.games);
     },
     'fill-submit': function(game) {
+      this.show();
       this.away = {
         name: game.home.name,
         team: game.away.team,
@@ -34,10 +36,25 @@ Vue.component("post-result", Vue.extend({
         team: game.home.team,
         goals: 0
       };
+      console.log(game);
       this.revange = game.revange;
     }
   },
   methods: {
+    show: function() {
+      $(".whole").toggleClass("blurred");
+      this.isShowed = true;
+      this.result = '';
+    },
+    hide: function() {
+      $(".whole").toggleClass("blurred");
+      this.isShowed = false;
+    },
+    goals: function(to, how) {
+      if (this[to].goals + how >= 0) {
+        this[to].goals += how;
+      }
+    },
     extractTeams: function(games) {
       return _.flatten(
         games.map(function(g) {
@@ -59,6 +76,7 @@ Vue.component("post-result", Vue.extend({
         if (!!error) {
           $vm.result = error;
         } else {
+          setTimeout($vm.hide(),350);
           $vm.result = "Submitted!";
         }
       });
@@ -80,9 +98,20 @@ Vue.component("post-result", Vue.extend({
 
         });
       }
+    },
+    isLocked : function(side){
+      return this.teamLocks.map(function(theSide){
+          return theSide.name;
+        }).indexOf(side.name) !== -1;
     }
   },
   computed: {
+    teamLocks: function(){
+      var $vm = this;
+      return [this.home,this.away].filter(function(name){
+          return $vm.$root.team(name) !== '';
+      });
+    },
     errors: function() {
       var validations = [
         {

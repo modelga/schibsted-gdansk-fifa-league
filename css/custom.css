@@ -196,3 +196,173 @@ text-transform: uppercase;
   text-align: center;
   background: linear-gradient(90deg, transparent 25%, black 50%, transparent 75%);
 }
+
+#post-results{
+  position: fixed;
+  z-index: 9998;
+  top:0px;
+  right: 0;
+  left:0;
+  bottom:0;
+  box-sizing: border-box;
+  margin: auto auto;
+  background: rgba(0,0,0,0.8);
+  transition: all .6s ease;
+}
+
+#post-results .inner{
+  width: 640px;
+  height: 480px;
+  left: 0;
+  right:0;
+  bottom: 0;
+  top: 0;
+  position: absolute;
+  background: rgba(33,33,33,0.7);
+  padding: 20px;
+  box-shadow: 0px 0px 3px rgba(255,255,255,0.4);
+  margin: auto;
+}
+#post-results .name{
+  position:absolute;
+  width: 260px;
+  text-align: center;
+  top: 40px;
+  padding:0;
+  margin:0;
+}
+#post-results .header{
+  position: absolute;
+  left:0;
+  right:0px;
+  width: 160px;
+  margin: auto;
+  text-align: center;
+}
+#post-results .header h4{
+  margin:0;
+}
+#post-results .name h2{
+margin:0;
+line-height: 70px;
+font-size: 35px;
+}
+#post-results .name-home{
+  left: 50px;
+}
+#post-results .name-away{
+  right: 50px;
+}
+
+.modal-enter, .modal-leave {
+  opacity: 0;
+  transform: scale(1.1);
+
+}
+#post-results .team{
+  position: absolute;
+  top: 130px;
+  width: 260px;
+  text-align: center;
+}
+#post-results .team h2{
+  font-size: 16px;
+  margin:0;
+  line-height: 40px;
+}
+#post-results .team-home{
+  left: 50px;
+}
+#post-results .team-away{
+  right: 50px;
+}
+#post-results .submit{
+  position: absolute;
+  left:0;
+  right:0;
+  margin: auto;
+  width: 100px;
+  text-align: center;
+  top: 275px;
+}
+  #post-results .submit-result{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+#post-results .close{
+  color:white;
+  position: absolute;
+  display: block;
+  right: 10px;
+  top: 10px;
+}
+#post-results .goals{
+  width: 100px;
+  top: 200px;
+  position: absolute;
+  text-align:center;
+}
+#post-results .goals h3{
+  margin:0;
+  font-size: 35px;
+}
+#post-results .errors{
+  position: absolute;
+  top: 320px;
+  text-align: center;
+  left:0;
+  right:0;
+  margin: auto;
+  display: block;
+}
+#post-results .errors span{
+  display:block;
+  color: gray;
+}
+#post-results .goals i{
+  margin:0;
+  font-size: 35px;
+  cursor: pointer;
+  color: gray;
+  transition: all .3s ease;
+}
+#post-results input{
+  color: gray;
+  background: rgba(66, 66, 66, 0.1);
+  border: 0;
+  font-weight: bold;
+  height: 40px;
+  line-height: 40px;
+  outline:none;
+  text-align: center;
+  font-size: 16px;
+  letter-spacing: 1px;
+  font-family: "Montserrat", "Helvetica";
+  text-transform: uppercase;
+  margin:0;
+  padding:0;
+  border-radius: 0px;
+}
+#post-results input:focus{
+  box-shadow: none;
+}
+#post-results .goals i:hover{
+  color: white;
+  text-shadow: 0px 0px 13px rgba(255,255,255,0.7);
+}
+#post-results .goals-home{
+  left: 140px;
+}
+#post-results .goals-away{
+  right: 140px;
+}
+.whole{
+  transition: all 0.6s ease;
+}
+.blurred{
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  filter: blur(10px);
+}
