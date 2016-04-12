@@ -259,6 +259,13 @@ font-size: 35px;
   transform: scale(1.1);
 
 }
+.fade{
+  transition: all 0.3s ease;
+  opacity: 1;
+}
+.fade-enter, .fade-leave {
+  opacity: 0;
+}
 #post-results .team{
   position: absolute;
   top: 130px;

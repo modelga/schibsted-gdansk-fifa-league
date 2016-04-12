@@ -139,13 +139,13 @@
     <div class="goals goals-home">
       <span class="add-goals" @click="goals('home',1)"><i class="fa fa-angle-double-up"></i></span>
       <h3>{{home.goals}}</h3>
-      <span class="sub-goals" @click="goals('home',-1)"><i class="fa fa-angle-double-down"></i></span>
+      <span class="sub-goals fade" v-show="home.goals > 0" transition="fade" @click="goals('home',-1)"><i class="fa fa-angle-double-down"></i></span>
     </div>
 
     <div class="goals goals-away">
       <span class="add-goals" @click="goals('away',1)"><i class="fa fa-angle-double-up"></i></span>
       <h3>{{away.goals}}</h3>
-      <span class="sub-goals" @click="goals('away',-1)"><i class="fa fa-angle-double-down"></i></span>
+      <span class="sub-goals fade"  v-show="away.goals > 0" transition="fade" @click="goals('away',-1)"><i class="fa fa-angle-double-down"></i></span>
     </div>
 
     <div class="team team-home">
