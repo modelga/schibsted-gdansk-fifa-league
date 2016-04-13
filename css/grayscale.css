@@ -144,7 +144,7 @@ a:focus {
     display: table;
     width: 100%;
     height: auto;
-    padding: 100px 0;
+    padding: 100px 0 !important;
     text-align: center;
     color: #fff;
 
@@ -165,11 +165,12 @@ a:focus {
 .intro .intro-body {
     display: table-cell;
     vertical-align: middle;
-    padding-bottom: 450px;
+    padding-bottom: 520px;
 }
 
 .intro .intro-body .brand-heading {
     font-size: 40px;
+    margin-bottom: 15px;
 }
 
 .intro .intro-body .intro-text {
