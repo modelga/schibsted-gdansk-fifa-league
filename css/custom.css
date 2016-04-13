@@ -206,7 +206,7 @@ text-transform: uppercase;
   bottom:0;
   box-sizing: border-box;
   margin: auto auto;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.4);
   transition: all .6s ease;
 }
 
@@ -256,8 +256,10 @@ font-size: 35px;
 
 .modal-enter, .modal-leave {
   opacity: 0;
-  transform: scale(1.1);
-
+  transform: scale(1.6);
+  -webkit-filter: blur(20px);
+  -moz-filter: blur(20px);
+  filter: blur(20px);
 }
 .fade{
   transition: all 0.3s ease;
@@ -334,6 +336,14 @@ font-size: 35px;
   cursor: pointer;
   color: gray;
   transition: all .3s ease;
+}
+#post-results *:not(input){
+  -webkit-touch-callout: none;
+ -webkit-user-select: none;
+ -khtml-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
 }
 #post-results input{
   color: gray;

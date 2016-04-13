@@ -138,11 +138,11 @@ Vue.component("post-result", Vue.extend({
           valid: this.home.goals >= 0
         },
         {
-          msg: "Home team name cannot be empty!",
+          msg: this.home.name+"'s team name cannot be empty!",
           valid: !!this.home.team
         },
         {
-          msg: "Away team name cannot be empty!",
+          msg: this.away.name+"'s team name cannot be empty!",
           valid: !!this.away.team
         },
       ];
