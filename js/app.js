@@ -27,7 +27,6 @@ new Vue({
       this.fbRef.authWithOAuthPopup("github", function(error, authData) {
         console.log(error);
       }, {
-        remember: "sessionOnly",
         scope: "user,gist"
       });
     },
