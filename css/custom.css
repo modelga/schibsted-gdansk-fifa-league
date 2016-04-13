@@ -253,7 +253,6 @@ font-size: 35px;
 #post-results .name-away{
   right: 50px;
 }
-
 .modal-enter, .modal-leave {
   opacity: 0;
   transform: scale(1.6);
@@ -377,6 +376,9 @@ font-size: 35px;
 }
 .whole{
   transition: all 0.6s ease;
+    -webkit-filter: blur(0px);
+    -moz-filter: blur(0px);
+    filter: blur(0px);
 }
 .blurred{
   -webkit-filter: blur(10px);
