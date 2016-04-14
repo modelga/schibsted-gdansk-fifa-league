@@ -6,9 +6,9 @@ new Vue({
     players: [],
     logged: undefined,
     toDisplay: '',
-    displayed : 'displayName',
+    displayed: 'displayName',
     fbRef: new Firebase("https://fiery-inferno-4213.firebaseio.com/"),
-    teams : {}
+    teams: {}
   },
   methods: {
     winner: function(game) {
@@ -43,30 +43,44 @@ new Vue({
       event.preventDefault();
       event.stopPropagation();
     },
-    team: function(player,value){
-      if(typeof player === "object"){
+    team: function(player, value) {
+      if (typeof player === "object") {
         player = player.name;
       }
 
-      if(typeof value !== 'undefined'){
-        return {name: value,score:0};
-      }else{
-        if(this.teams.hasOwnProperty(player)){
+      if (typeof value !== 'undefined') {
+        return {
+          name: value,
+          score: 0
+        };
+      } else {
+        if (this.teams.hasOwnProperty(player)) {
           return this.teams[player];
-        }else{
-          return {name:"",score:0};
+        } else {
+          return {
+            name: "",
+            score: 0
+          };
         }
       }
     },
-    stars: function(teamScore){
-      return [1,1,1,1,1].map(function(value,index){
-          if(index < parseInt(teamScore)){
-            return ("star");
-          }else if (index < teamScore) {
-            return("star-half-o");
-          }else{
-          return("star-o");
-          }
+    stars: function(team) {
+      var foundTeam = _.find(this.teams, function(theTeam) {
+        console.log(theTeam);
+        if (theTeam.name === team)
+          return theTeam;
+      });
+      if (typeof foundTeam === 'undefined') {
+        return [];
+      }
+      return [1, 1, 1, 1, 1].map(function(value, index) {
+        if (index < parseInt(foundTeam.score)) {
+          return ("star");
+        } else if (index < foundTeam.score) {
+          return ("star-half-o");
+        } else {
+          return ("star-o");
+        }
       });
     }
   },
@@ -75,17 +89,17 @@ new Vue({
       return this.logged[this.displayed];
     }
   },
-  events : {
-    'on-data': function(data){
-          this.teams = data.teams;
-          this.$broadcast('on-data', data);
+  events: {
+    'on-data': function(data) {
+      this.teams = data.teams;
+      this.$broadcast('on-data', data);
     }
   },
   asyncData: function(resolve) {
     var self = this;
     this.fbRef.root().on('value', function(s) {
       data = s.val();
-      if(!data.hasOwnProperty("games")){
+      if (!data.hasOwnProperty("games")) {
         data.games = {};
       }
       self.$emit('on-data', data);
