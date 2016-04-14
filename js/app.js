@@ -27,7 +27,6 @@ new Vue({
       this.fbRef.authWithOAuthPopup("github", function(error, authData) {
         console.log(error);
       }, {
-        scope: "user,gist"
       });
     },
     unAuth: function(event) {
