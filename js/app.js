@@ -49,14 +49,25 @@ new Vue({
       }
 
       if(typeof value !== 'undefined'){
-        return value;
+        return {name: value,score:0};
       }else{
         if(this.teams.hasOwnProperty(player)){
-          return this.teams[player].name;
+          return this.teams[player];
         }else{
-          return "";
+          return {name:"",score:0};
         }
       }
+    },
+    stars: function(teamScore){
+      return [1,1,1,1,1].map(function(value,index){
+          if(index < parseInt(teamScore)){
+            return ("star");
+          }else if (index < teamScore) {
+            return("star-half-o");
+          }else{
+          return("star-o");
+          }
+      });
     }
   },
   computed: {

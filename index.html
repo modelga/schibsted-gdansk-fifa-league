@@ -24,7 +24,7 @@
             <tr v-for="(index,player) in scorers">
                 <td>{{index + 1}}.</td>
               <td>{{player.name}}</td>
-              <td>{{$root.team(player)}}</td>
+              <td>{{$root.team(player).name}}</td>
               <td>{{player.goals}}</td>
             </tr>
             </table>
@@ -154,6 +154,9 @@
     </div>
     <div v-else>
       <h2>{{home.team}}</h2>
+      <span v-for="star in $root.stars($root.team(home).score)"  track-by="$index">
+      <i class="fa fa-{{star}}"></i>
+      </span>
     </div>
     </div>
 
@@ -163,6 +166,9 @@
       </div>
       <div v-else>
         <h2>{{away.team}}</h2>
+        <span v-for="star in $root.stars($root.team(away).score)"  track-by="$index">
+        <i class="fa fa-{{star}}"></i>
+        </span>
       </div>
     </div>
 

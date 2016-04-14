@@ -51,11 +51,11 @@ Vue.component("result-map", Vue.extend({
         this.$root.$broadcast('fill-submit', {
           home: {
             name: home,
-            team: this.$root.team(isRevenge ? home : away)
+            team: this.$root.team(isRevenge ? home : away).name
           },
           away: {
             name: away,
-            team: this.$root.team(isRevenge ? away : home)
+            team: this.$root.team(isRevenge ? away : home).name
           },
           revange: isRevenge
         });
