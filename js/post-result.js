@@ -28,12 +28,12 @@ Vue.component("post-result", Vue.extend({
       this.show();
       this.away = {
         name: game.home.name,
-        team: game.away.team,
+        team: game.home.team,
         goals: 0
       };
       this.home = {
         name: game.away.name,
-        team: game.home.team,
+        team: game.away.team,
         goals: 0
       };
       this.revange = game.revange;
