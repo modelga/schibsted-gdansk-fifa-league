@@ -1,6 +1,7 @@
+loadTemplate('games-table', function(template) {
 Vue.component("games-table", Vue.extend({
   name: "games-table",
-  template: $("#games-table-template").text(),
+  template:template,
   scrollSize: 65,
   visible: 5,
   data: function() {
@@ -70,3 +71,4 @@ Vue.component("games-table", Vue.extend({
     }
   }
 }));
+});

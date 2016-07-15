@@ -1,0 +1,27 @@
+<div class="col-lg-5 ">
+  <h2>Results</h2>
+    <table class="results">
+        <tr>
+            <th>Pos.</th>
+            <th>Player</th>
+            <th>Matches</th>
+            <th>W</th>
+            <th>D</th>
+            <th>L</th>
+            <th>Goals</th>
+            <th>Points</th>
+        </tr>
+        <tr v-for="(index,player) in table">
+          <td>
+             {{index  + 1}}.
+          </td>
+          <td>{{player.name }}</td>
+          <td>{{player.total }}</td>
+          <td>{{player.wins }}</td>
+          <td>{{player.draws }}</td>
+          <td>{{player.losses }}</td>
+          <td>{{player.gained }} - {{player.lost }}</td>
+          <td>{{player.points }}</td>
+        </tr>
+    </table>
+</div>

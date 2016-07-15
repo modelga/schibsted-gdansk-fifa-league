@@ -1,0 +1,17 @@
+<div class="col-lg-5 col-lg-offset-2">
+    <h2>Top scorers</h2>
+        <table class="results">
+        <tr>
+          <th>Pos.</th>
+          <th>Player</th>
+          <th>Team</th>
+          <th>Goals</th>
+        </tr>
+        <tr v-for="(index,player) in scorers">
+            <td>{{index + 1}}.</td>
+          <td>{{player.name}}</td>
+          <td>{{$root.team(player).name}}</td>
+          <td>{{player.goals}}</td>
+        </tr>
+        </table>
+  </div>

@@ -1,12 +1,12 @@
-
-Vue.component('table-of-results',Vue.extend({
-    template: $('#results-table-template').text(),
-    events:{
-      'on-data' : function(data){
+loadTemplate('results-table', function(template) {
+  Vue.component('table-of-results', Vue.extend({
+    template:  template,
+    events: {
+      'on-data': function(data) {
         this.$data = data;
       }
     },
-    computed:{
+    computed: {
       table: function() {
         var self = this,
           scoredPlayerList = _.map(this.players, function(player) {
@@ -74,18 +74,19 @@ Vue.component('table-of-results',Vue.extend({
             };
           });
         return _.chain(scoredPlayerList).sortBy('name')
-        .sortBy(function(result) {
-          return -result.gained;
-        })
-        .sortBy(function(result) {
-          return -result.balance;
-        })
-        .sortBy(function(result) {
-          return result.total;
-        })
-        .sortBy(function(result) {
-          return -result.points;
-        }).value();
+          .sortBy(function(result) {
+            return -result.gained;
+          })
+          .sortBy(function(result) {
+            return -result.balance;
+          })
+          .sortBy(function(result) {
+            return result.total;
+          })
+          .sortBy(function(result) {
+            return -result.points;
+          }).value();
       }
     }
-}));
+  }));
+});

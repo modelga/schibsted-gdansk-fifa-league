@@ -1,0 +1,29 @@
+<h2>Games</h2>
+<h4>Played {{games.length}} of {{expectedGames}} games</h4>
+  <input type="text" class="form-control games-search" placeholder='filter by typing: Player,Opponent' v-model="search"/>
+  <span @click="up" class="games-scroll-control" :class="currentScroll != 0 ? 'active' : 'inactive'"><i class="fa fa-angle-double-up"></i></span>
+  <div class="games-scroll">
+    <span v-if="filteredGames.length == 0">Not founds matches related to {{searchBy.join(" ")}}</span>
+    <table class="games">
+      <tr v-for="game in filteredGames" title :class="isFirstGame(game) ? 'do-rematch' : (game.revange ? 'rematch' : '')" @click="rematch(game)">
+        <td class="teamname home" :class="game.home.goals > game.away.goals ? 'winner' : (game.home.goals == game.away.goals ? 'draw' : 'loser' )">
+          <h3>{{game.home.name}}</h3>
+          <h5>{{game.home.team}}</h5>
+        </td>
+        <td>
+         <h1>{{game.home.goals}}</h1>
+        </td>
+        <td>
+            <h1>:</h1>
+        </td>
+        <td>
+         <h1>{{game.away.goals}}</h1>
+        </td>
+        <td class="teamname away" :class="game.home.goals < game.away.goals ? 'winner' : (game.home.goals == game.away.goals ? 'draw' : 'loser' )">
+          <h3>{{game.away.name}}</h3>
+          <h5>{{game.away.team}}</h5>
+        </td>
+      </tr>
+    </table>
+  </div>
+ <span @click="down" class="games-scroll-control" :class="currentScroll < maxScrolled  ? 'active' : 'inactive'"> <i class="fa fa-angle-double-down"></i></span>
