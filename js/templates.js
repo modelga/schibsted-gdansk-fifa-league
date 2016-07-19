@@ -5,10 +5,10 @@ var definedTemplates = {
   "results-table" : false,
   "team-score" : false,
   "top-scorers" : false,
-  "leagues": false
+  "leagues": false,
+  "user" : false,
 };
 function loadTemplate(name, callback) {
-  console.log(name);
   $.get('templates/' + name + '.hbs', function(data) {
     definedTemplates[name] = data;
     callback(data);

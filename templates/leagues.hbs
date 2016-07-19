@@ -1,4 +1,16 @@
-<a class="navbar-brand page-scroll" href="#page-top" v-if="$root.logged && $root.logged.isAdmin">
- <span @click="newLeague()" class="light gray">+ Nowa</span>
+
+<a class="navbar-brand page-scroll" href="#" v-for="league in leagues" track-by="$index">
+ <span @click="choose(league)" class="light">{{league}}</span>
 </a>
-<input v-model="newLeagueName" />
+
+<a class="navbar-brand page-scroll"  v-if="$root.logged && $root.logged.isAdmin">
+  <span @click="newLeague()" class="light gray">+ New</span>
+</a>
+<div class="row" v-if="showInput">
+  <div class="col-lg-8">
+    <input v-model="newLeagueName" class="form-control" placeholder="name for new league"/>
+  </div>
+  <div class="col-lg-1">
+  <button @click="acceptLeague" class="btn btn-primary">Submit</button>
+</div>
+</div>

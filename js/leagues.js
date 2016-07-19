@@ -9,22 +9,30 @@ loadTemplate('leagues', function(template) {
       };
     },
     events: {
-      league: function(data) {
-        leagues.push(data.value);
+      'data-league': function(data) {
+        this.leagues.push(data.value);
+      },
+      'action-league':function(data){
+        console.log("choose an league"+ data);
       }
     },
     methods: {
       newLeague: function() {
-        this.showInput = true;
+        this.showInput = !this.showInput;
       },
       acceptLeague: function() {
         var $vm = this;
-        this.$root.db.ref("/events").push({
-          name: "league",
-          value: this.newLeagueName
-        }).then(function(s){
-          $vm.showInput=false;
-        });
+        if (this.newLeagueName !== "") {
+          this.$root.db.ref("/events").push({
+            name: "league",
+            value: this.newLeagueName
+          }).then(function(s) {
+            $vm.showInput = false;
+          });
+        }
+      },
+      choose: function(league){
+        this.$root.$broadcast('action-league',league);
       }
     }
   }));

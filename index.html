@@ -27,43 +27,23 @@
             <leagues></leagues>
         </div>
         <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-            <ul class="nav navbar-nav" v-if="!logged">
-              <li >
-                <a href @click="auth"><i class="fa fa-github"></i>Sign In</a>
-              </li>
-            </ul>
-            <ul v-else class="nav navbar-nav">
-              <li>
-                <a href @click="toggleName"><i class="fa fa-github"></i> {{ toDisplay }}</a>
-              </li>
-              <li>
-                <a href @click="unAuth"><i class="fa fa-sign-out"></i> Sign Out</a>
-              </li>
-        </ul>
+            <user></user>
         </div>
 
     </div>
 </nav>
 
-<!-- Intro Header -->
-<header class="intro">
-    <div class="intro-body">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <h1 class="brand-heading">Schibsted League</h1>
-                    <p class="intro-text">A table of results for Schibsted's Gdańsk office FIFA 16 league.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
-<section id="results" class="container content-section text-center">
+<div class="sections">
+  <section class="container content-section text-center">
   <div class="row">
     <table-of-results></table-of-results>
-    <top-scorers></top-scorers>
   </div>
+</section>
+
+<section  class="container content-section text-center">
+<div class="row">
+  <top-scorers></top-scorers>
+</div>
 </section>
 
 <section class="container content-section text-center">
@@ -77,6 +57,8 @@
     <result-map></result-map>
   </div>
 </section>
+
+</div>
 
 <!-- Contact Section -->
 <section id="contribute" class="container content-section text-center">
@@ -95,7 +77,6 @@
     </footer>
 </div>
     <post-result></post-result>
-
     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
@@ -121,6 +102,7 @@
     <script src="js/map.js"></script>
     <script src="js/post-result.js"></script>
     <script src="js/leagues.js"></script>
+    <script src="js/user.js"></script>
 
     <script src="js/app.js"></script>
 
