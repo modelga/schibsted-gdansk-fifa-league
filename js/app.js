@@ -8,62 +8,31 @@ runAfterLoadAllTemplates(function() {
       logged: undefined,
       toDisplay: '',
       displayed: 'displayName',
-      fbRef: new Firebase("https://fiery-inferno-4213.firebaseio.com/"),
+      fbRef: undefined,
       teams: {}
     },
     methods: {
-      winner: function(game) {
-        if (parseInt(game.home.goals) == parseInt(game.away.goals)) {
-          return 'draw';
-        } else if (parseInt(game.home.goals) > parseInt(game.away.goals)) {
-          return 'home';
-        } else {
-          return 'away';
-        }
-      },
       auth: function(event) {
         event.preventDefault();
         event.stopPropagation();
         var $vc = this;
-        this.fbRef.authWithOAuthPopup("github", function(error, authData) {
-          console.log(error);
-        }, {
-        });
+        var provider = new firebase.auth.GithubAuthProvider();
+        this.fbRef.auth().signInWithPopup(provider);
       },
       unAuth: function(event) {
         event.preventDefault();
         event.stopPropagation();
-        this.fbRef.unauth();
+        this.fbRef.auth().signOut();
       },
+      team: function() {},
       toggleName: function(event) {
         if (this.displayed == 'displayName') {
-          this.displayed = 'id';
+          this.displayed = 'uid';
         } else {
           this.displayed = 'displayName';
         }
         event.preventDefault();
         event.stopPropagation();
-      },
-      team: function(player, value) {
-        if (typeof player === "object") {
-          player = player.name;
-        }
-
-        if (typeof value !== 'undefined') {
-          return {
-            name: value,
-            score: 0
-          };
-        } else {
-          if (this.teams.hasOwnProperty(player)) {
-            return this.teams[player];
-          } else {
-            return {
-              name: "",
-              score: 0
-            };
-          }
-        }
       },
       stars: function(team) {
         var foundTeam = _.find(this.teams, function(theTeam) {
@@ -89,26 +58,47 @@ runAfterLoadAllTemplates(function() {
         return this.logged[this.displayed];
       }
     },
-    events: {
-      'on-data': function(data) {
-        this.teams = data.teams;
-        this.$broadcast('on-data', data);
-      }
+    created: function() {
+      var config = {
+        apiKey: "AIzaSyDbPbbC82iKCoFzA3ibCWgSPe8AGPiNt8Q",
+        authDomain: "fiery-inferno-4213.firebaseapp.com",
+        databaseURL: "https://fiery-inferno-4213.firebaseio.com",
+        storageBucket: "fiery-inferno-4213.appspot.com",
+      };
+      this.fbRef = firebase.initializeApp(config);
+      this.db = this.fbRef.database();
     },
     asyncData: function(resolve) {
       var self = this;
-      this.fbRef.root().on('value', function(s) {
-        data = s.val();
-        if (!data.hasOwnProperty("games")) {
-          data.games = {};
-        }
-        self.$emit('on-data', data);
+      var db = this.db;
+      db.ref('/events').on('value', function(s) {
+        var events = s.val();
+        _.forEach(events, function(event) {
+          self.$broadcast("init", {
+            name: "init"
+          });
+        });
+        self.$broadcast("loaded", {
+          name: "loaded"
+        });
       });
-
-      this.fbRef.onAuth(function(auth) {
+      this.fbRef.auth().onAuthStateChanged(function(auth) {
         if (auth !== null) {
-          self.logged = auth.github;
+          console.log(auth.providerData[0]);
+          self.logged = auth.providerData[0];
+          self.logged.isAdmin = false;
           self.displayed = 'displayName';
+          db.ref('/users/' + auth.uid).once('value').then(function(s) {
+            var data = s.val();
+            if (!data) {
+              db.ref("/users/" + auth.uid).set({
+                displayName: self.logged.displayName
+              });
+            }
+          });
+          db.ref('/admins/' + auth.uid).once('value').then(function(snapshot) {
+            self.logged = _.extend(JSON.parse(JSON.stringify(self.logged)),{isAdmin: !!snapshot.val()});
+          });
         } else {
           self.logged = undefined;
           self.displayName = undefined;

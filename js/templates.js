@@ -4,7 +4,8 @@ var definedTemplates = {
   "results-map" : false,
   "results-table" : false,
   "team-score" : false,
-  "top-scorers" : false
+  "top-scorers" : false,
+  "leagues": false
 };
 function loadTemplate(name, callback) {
   console.log(name);
@@ -16,6 +17,7 @@ function loadTemplate(name, callback) {
 
 var runAfterLoadAllTemplates = function(callback){
   var checkIfLoaded = function(){
+    var definition;
     for(definition in definedTemplates){
       if(!definedTemplates[definition])
         return false;

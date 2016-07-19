@@ -24,14 +24,15 @@
             <a class="navbar-brand page-scroll" href="#page-top">
                 <i class="fa fa-play-circle"></i>  <span class="light">Start</span>
             </a>
+            <leagues></leagues>
         </div>
         <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
             <ul class="nav navbar-nav" v-if="!logged">
               <li >
-                <a href @click="auth"><i class="fa fa-github"></i> Sing In</a>
+                <a href @click="auth"><i class="fa fa-github"></i>Sign In</a>
               </li>
             </ul>
-            <ul  v-else class="nav navbar-nav">
+            <ul v-else class="nav navbar-nav">
               <li>
                 <a href @click="toggleName"><i class="fa fa-github"></i> {{ toDisplay }}</a>
               </li>
@@ -95,7 +96,9 @@
 </div>
     <post-result></post-result>
 
-    <script src="https://cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
 
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -117,6 +120,7 @@
     <script src="js/games-table.js"></script>
     <script src="js/map.js"></script>
     <script src="js/post-result.js"></script>
+    <script src="js/leagues.js"></script>
 
     <script src="js/app.js"></script>
 

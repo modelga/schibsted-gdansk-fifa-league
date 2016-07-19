@@ -3635,6 +3635,8 @@ tbody.collapse.in {
   bottom: 100%;
   margin-bottom: 2px;
 }
+
+
 @media (min-width: 768px) {
   .navbar-right .dropdown-menu {
     right: 0;

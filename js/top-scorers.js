@@ -2,9 +2,8 @@ loadTemplate('top-scorers', function(template) {
   Vue.component('top-scorers', Vue.extend({
     template: template,
     events: {
-      'on-data': function(data) {
-        this.$data = data;
-        this.games = _.toArray(this.games).reverse();
+      'init': function(d){
+        console.log(d);
       }
     },
     computed: {

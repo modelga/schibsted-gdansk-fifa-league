@@ -1,0 +1,4 @@
+<a class="navbar-brand page-scroll" href="#page-top" v-if="$root.logged && $root.logged.isAdmin">
+ <span @click="newLeague()" class="light gray">+ Nowa</span>
+</a>
+<input v-model="newLeagueName" />
