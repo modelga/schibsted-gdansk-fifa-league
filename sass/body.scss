@@ -1,0 +1,22 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  background-color: #000;
+  background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,1)), url("https://static.pexels.com/photos/39562/the-ball-stadion-football-the-pitch-39562.jpeg");
+  background-size: 100%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color:white;
+  margin: 20px;
+  margin-top: 150px;
+}
+*{
+  box-sizing: border-box !important;
+}
+footer{
+  position: absolute;
+  bottom:0;
+  padding:0;
+  z-index: 2;
+}

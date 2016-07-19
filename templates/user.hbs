@@ -1,9 +1,9 @@
-<ul class="nav navbar-nav" v-if="!logged">
+<div  v-if="!logged">
   <li >
     <a href @click="auth"><i class="fa fa-github"></i>Sign In</a>
   </li>
-</ul>
-<ul v-else class="nav navbar-nav">
+</div>
+<div >
   <li>
     <a href @click="toggleName"><i class="fa fa-github"></i> {{ toDisplay }}</a>
   </li>
@@ -13,4 +13,4 @@
   <li>
     <a href @click="unAuth"><i class="fa fa-sign-out"></i> Sign Out</a>
   </li>
-</ul>
+</div>
