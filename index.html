@@ -27,26 +27,35 @@
 
 <div class="tabs">
   <tab-manage></tab-manage>
-  <div data-name="Table of results" class="tab tab-table-of-results active">
+  <div data-name="Table of results" class="tab shown active">
     <table-of-results></table-of-results>
   </div>
-  <div data-name="Top scorers" class="tab tab-top-scorers">
+  <div data-name="Top scorers" class="tab shown">
     <top-scorers></top-scorers>
   </div>
-  <div data-name="Games table" class="tab tab-games-table">
+  <div data-name="Games table" class="tab shown">
     <games-table></games-table>
   </div>
-  <div data-name="Result map" class="tab tab-result-map">
+  <div data-name="Result map" class="tab shown">
     <result-map></result-map>
   </div>
+  <div data-name="My Account" class="tab">
+    <h2>My Account</h2>
+  </div>
+  <div data-name="Admin" class="tab">
+      <h2>Admin</h2>
+  </div>
+  <footer>
+    <h2>Fell free to contribute on <a href="https://github.com/modelga/schibsted-gdansk-fifa-league">github.com</a></h2>
+   <div class="copyright">
+       <span>Schibsted Tech Polska @ 2016</span>
+      <a href="http://www.schibsted.pl"  class="schibsted-logo">
+     </a>
+   </div>
+  </footer>
 </div>
 
-    <footer>
-      <h2>Fell free to contribute on <a href="https://github.com/modelga/schibsted-gdansk-fifa-league">github.com</a></h2>
-           <div class="container text-center">
-               <p>Schibsted Tech Polska @ 2016</p>
-           </div>
-    </footer>
+
 </div>
     <post-result></post-result>
     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-app.js"></script>

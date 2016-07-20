@@ -35,6 +35,9 @@ runAfterLoadAllTemplates(function() {
     events:{
       logged: function(data){
         this.logged = data;
+      },
+      'store': function(data,callback){
+        console.log("store data"+data);
       }
     },
     created: function() {

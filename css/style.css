@@ -657,53 +657,84 @@ body {
   font-size: 14px;
   line-height: 1.42857143;
   background-color: #000;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), black), url("https://static.pexels.com/photos/39562/the-ball-stadion-football-the-pitch-39562.jpeg");
-  background-size: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url("https://static.pexels.com/photos/39562/the-ball-stadion-football-the-pitch-39562.jpeg");
+  background-size: cover;
+  background-position: 0 0,80% 0;
   background-attachment: fixed;
   background-repeat: no-repeat;
   color: white;
   margin: 20px;
-  margin-top: 150px; }
+  margin-top: 50px; }
 
 * {
   box-sizing: border-box !important; }
 
 footer {
   position: absolute;
-  bottom: 0;
+  bottom: 0px;
   padding: 0;
+  height: 30px;
+  line-height: 30px;
+  left: 10px;
+  right: 0px;
   z-index: 2; }
+  footer h2 {
+    margin: 0;
+    float: left; }
+  footer div.copyright {
+    float: right; }
+    footer div.copyright a.schibsted-logo {
+      opacity: 0.5;
+      transition: all 0.4s ease;
+      background-image: url("http://www.schibsted.pl/wp-content/themes/schibsted-pl/img/stp_logo.png");
+      width: 100px;
+      height: 30px;
+      float: right;
+      margin-left: 20px;
+      background-color: white;
+      background-size: 90%;
+      background-repeat: no-repeat;
+      background-position: 50%; }
+      footer div.copyright a.schibsted-logo:hover {
+        opacity: 1; }
 
 .tabs {
-  position: relative;
+  position: absolute;
   overflow: hidden;
-  width: 100%;
-  height: 600px;
-  box-shadow: inset 0px 0px 30px black, 0px 0px 2px black; }
+  top: 75px;
+  bottom: 0px;
+  margin-bottom: 35px;
+  left: 30px;
+  right: 30px;
+  min-height: 100px;
+  box-shadow: 0px 0px 10px black, 0px 0px 1px black, 0px 0px 150px black, 0px 50px 300px black; }
   .tabs .manage {
     height: 33px;
-    border-bottom: 3px solid rgba(198, 136, 0, 0.79);
-    background: rgba(45, 31, 0, 0.8); }
+    border-bottom: 3px solid rgba(66, 220, 163, 0.7);
+    background: rgba(21, 112, 78, 0.3); }
     .tabs .manage .tab-pill {
       cursor: pointer;
-      width: 175px;
+      width: 165px;
       float: left;
       height: 30px;
-      background: rgba(45, 31, 0, 0.79);
+      background: rgba(21, 112, 78, 0.7);
       font-family: 'Montserrat';
       text-transform: uppercase;
       line-height: 30px;
-      box-shadow: inset 0px 0px 3px orange;
+      box-shadow: inset 0px 0px 1px rgba(0, 0, 0, 0.5);
       text-align: center;
       transition: all 0.3s ease; }
-      .tabs .manage .tab-pill:hover {
-        background: rgba(96, 66, 0, 0.79); }
+      .tabs .manage .tab-pill:hover, .tabs .manage .tab-pill.active {
+        background: rgba(29, 155, 108, 0.7); }
   .tabs .tab {
     width: 100%;
     padding: 20px;
+    top: 33px;
+    bottom: 0;
     position: absolute;
     transition: all 0.9s ease;
-    transform: translateX(-3000px); }
+    transform: translateX(-3000px);
+    overflow: auto; }
     .tabs .tab.active {
       transform: translateX(0); }
 
@@ -722,7 +753,6 @@ footer {
     height: 70px; }
   .navbar-fixed-top > div {
     display: inline-block;
-    border: 1px solid red;
     position: absolute; }
     .navbar-fixed-top > div.navbar-left {
       left: 20px; }

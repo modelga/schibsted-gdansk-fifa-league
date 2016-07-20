@@ -3,14 +3,15 @@ loadTemplate('tab-manage', function(template) {
     template: template,
     data: function() {
       return {
-        tabs: [],
+        basicTabs: [],
+        accountTabs: [],
         active: undefined
       };
     },
     created: function() {
       var tabs = [];
       var active;
-      $(".tabs > .tab").each(function() {
+      $(".tabs > .tab.shown").each(function() {
         var tab = $(this);
         var tabName = tab.data("name");
         tabs.push(tab.data("name"));
@@ -18,7 +19,7 @@ loadTemplate('tab-manage', function(template) {
           active =tabName;
         }
       });
-      this.tabs = tabs;
+      this.basicTabs = tabs;
       this.active = active;
     },
     methods:{
@@ -26,6 +27,22 @@ loadTemplate('tab-manage', function(template) {
         $(".tabs > .tab").removeClass('active');
         $(".tabs > .tab[data-name='"+tab+"']").addClass('active');
         this.active = tab;
+      }
+    },
+    computed:{
+      tabs: function(){
+        return this.basicTabs.concat(this.accountTabs);
+      }
+    },
+    events:{
+      logged: function(user){
+        this.accountTabs = [];
+        if(user){
+          this.accountTabs = ["My Account"];
+          if(user.isAdmin){
+            this.accountTabs.push("Admin");
+          }
+        }
       }
     }
   }));

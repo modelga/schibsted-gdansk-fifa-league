@@ -5,15 +5,19 @@ loadTemplate('leagues', function(template) {
       return {
         showInput: false,
         leagues: [],
-        newLeagueName: ''
+        newLeagueName: '',
+        isAdmin: false
       };
     },
     events: {
       'data-league': function(data) {
         this.leagues.push(data.value);
       },
-      'action-league':function(data){
+      'action-choose-league':function(data){
         console.log("choose an league"+ data);
+      },
+      'logged': function(user){
+        this.isAdmin = user && user.isAdmin;
       }
     },
     methods: {
@@ -23,16 +27,16 @@ loadTemplate('leagues', function(template) {
       acceptLeague: function() {
         var $vm = this;
         if (this.newLeagueName !== "") {
-          this.$root.db.ref("/events").push({
+          this.$dispatch('store',{
             name: "league",
             value: this.newLeagueName
-          }).then(function(s) {
+          },function(s) {
             $vm.showInput = false;
           });
         }
       },
       choose: function(league){
-        this.$root.$broadcast('action-league',league);
+        this.$root.$broadcast('action-choose-league',league);
       }
     }
   }));

@@ -3,12 +3,10 @@ loadTemplate('user', function(template) {
     template: template,
     data: function() {
       return {
-        players: [],
         logged: undefined,
         toDisplay: '',
         displayed: 'displayName',
-        fbRef: undefined,
-        teams: {}
+        leageu: ''
       };
     },
     computed: {
@@ -40,6 +38,11 @@ loadTemplate('user', function(template) {
         event.stopPropagation();
       }
     },
+    events: {
+      'data-choose-league' : function(){
+        
+      }
+    },
     created: function() {
       var self = this;
       var db = this.$root.db;
@@ -59,15 +62,14 @@ loadTemplate('user', function(template) {
               self.logged = _.extend(JSON.parse(JSON.stringify(self.logged)), {
                 isAdmin: !!snapshot.val()
               });
-              self.$dispatch('logged',self.logged);
-              console.log(JSON.stringify(self.logged));
+              self.$root.$broadcast('logged',self.logged);
             });
           });
-          self.$dispatch('logged',self.logged);
+          self.$root.$broadcast('logged',self.logged);
         } else {
           self.logged = undefined;
           self.displayName = undefined;
-          self.$dispatch('logged',self.logged);
+          self.$root.$broadcast('logged',self.logged);
         }
       });
     }
