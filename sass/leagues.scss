@@ -1,0 +1,26 @@
+.navbar-left {
+  .leagues {
+    display: inline-block;
+
+    a.league {
+      > span {
+        color: lighten($basic, 10%);
+
+        &:hover {
+          color: lighten($basic, 30%);
+        }
+      }
+    }
+
+    a.league {
+      &:not(:last-child)::after {
+        content: " / ";
+      }
+    }
+
+    a.league > span.active {
+      color: lighten($basic, 40%);
+      text-shadow: 0px 0px 4px lighten($basic, 20%);
+    }
+  }
+}

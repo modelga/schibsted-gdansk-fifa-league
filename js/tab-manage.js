@@ -12,21 +12,22 @@ loadTemplate('tab-manage', function(template) {
       var tabs = [];
       var active;
       $(".tabs > .tab.shown").each(function() {
-        var tab = $(this);
-        var tabName = tab.data("name");
-        tabs.push(tab.data("name"));
-        if($(this).hasClass('active')){
-          active =tabName;
-        }
+        tabs.push( $(this).data("name"));
       });
       this.basicTabs = tabs;
-      this.active = active;
+      this.activate(tabs[0]);
     },
     methods:{
-      activate: function(tab){
-        $(".tabs > .tab").removeClass('active');
-        $(".tabs > .tab[data-name='"+tab+"']").addClass('active');
-        this.active = tab;
+      activate: function(toActivate){
+        $(".tabs > .tab").removeClass('active tab-left tab-right');
+        $(".tabs > .tab[data-name='"+toActivate+"']").addClass('active');
+        this.active = toActivate;
+        var tabs = this.tabs;
+        $(".tabs > .tab").each(function(){
+          var tabName = $(this).data('name');
+          $(this).css(
+            "transform","translateX("+ 1500* (tabs.indexOf(tabName)-tabs.indexOf(toActivate))+"px)");
+        });
       }
     },
     computed:{
@@ -42,6 +43,7 @@ loadTemplate('tab-manage', function(template) {
           if(user.isAdmin){
             this.accountTabs.push("Admin");
           }
+          this.activate(this.active);
         }
       }
     }

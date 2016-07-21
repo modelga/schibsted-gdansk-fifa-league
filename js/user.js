@@ -6,12 +6,15 @@ loadTemplate('user', function(template) {
         logged: undefined,
         toDisplay: '',
         displayed: 'displayName',
-        leageu: ''
+        league: '--NO-LEAGUE--'
       };
     },
     computed: {
       toDisplay: function() {
         return this.logged[this.displayed];
+      },
+      uid : function(){
+        return "github:"+logged.uid;
       }
     },
     methods: {
@@ -39,8 +42,10 @@ loadTemplate('user', function(template) {
       }
     },
     events: {
-      'data-choose-league' : function(){
-        
+      'data-assign-league' : function(data){
+        if(data.who == this.uid){
+          league = data.value;
+        }
       }
     },
     created: function() {
@@ -62,14 +67,14 @@ loadTemplate('user', function(template) {
               self.logged = _.extend(JSON.parse(JSON.stringify(self.logged)), {
                 isAdmin: !!snapshot.val()
               });
-              self.$root.$broadcast('logged',self.logged);
+              self.$root.$emit('logged',self.logged);
             });
           });
-          self.$root.$broadcast('logged',self.logged);
+          self.$root.$emit('logged',self.logged);
         } else {
           self.logged = undefined;
           self.displayName = undefined;
-          self.$root.$broadcast('logged',self.logged);
+          self.$root.$emit('logged',self.logged);
         }
       });
     }

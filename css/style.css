@@ -659,7 +659,7 @@ body {
   background-color: #000;
   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url("https://static.pexels.com/photos/39562/the-ball-stadion-football-the-pitch-39562.jpeg");
   background-size: cover;
-  background-position: 0 0,80% 0;
+  background-position: 0 0, 80% 0;
   background-attachment: fixed;
   background-repeat: no-repeat;
   color: white;
@@ -732,11 +732,9 @@ footer {
     top: 33px;
     bottom: 0;
     position: absolute;
-    transition: all 0.9s ease;
-    transform: translateX(-3000px);
-    overflow: auto; }
-    .tabs .tab.active {
-      transform: translateX(0); }
+    transition: all 0.5s ease;
+    overflow: auto;
+    transform: translateX(-1000px); }
 
 .navbar-fixed-top {
   background: transparent;
@@ -746,7 +744,8 @@ footer {
   height: 150px;
   left: 0;
   transition: all 0.6s ease;
-  overflow: hidden; }
+  overflow: hidden;
+  font-size: 16px; }
   .navbar-fixed-top.dimmed {
     background: rgba(0, 0, 0, 0.8);
     box-shadow: 0px 2px 3px black;
@@ -762,3 +761,15 @@ footer {
         display: table-cell; }
         .navbar-fixed-top > div.navbar-right li:not(:first-child) {
           padding-left: 20px; }
+
+.navbar-left .leagues {
+  display: inline-block; }
+  .navbar-left .leagues a.league > span {
+    color: rgba(29, 155, 108, 0.7); }
+    .navbar-left .leagues a.league > span:hover {
+      color: rgba(66, 220, 163, 0.7); }
+  .navbar-left .leagues a.league:not(:last-child)::after {
+    content: " / "; }
+  .navbar-left .leagues a.league > span.active {
+    color: rgba(109, 228, 184, 0.7);
+    text-shadow: 0px 0px 4px rgba(37, 198, 138, 0.7); }

@@ -3,49 +3,54 @@ body {
   font-size: 14px;
   line-height: 1.42857143;
   background-color: #000;
-  background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.4)), url("https://static.pexels.com/photos/39562/the-ball-stadion-football-the-pitch-39562.jpeg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url("https://static.pexels.com/photos/39562/the-ball-stadion-football-the-pitch-39562.jpeg");
   background-size: cover;
-  background-position: 0 0,80% 0;
+  background-position: 0 0, 80% 0;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  color:white;
+  color: white;
   margin: 20px;
   margin-top: 50px;
 }
-*{
+
+* {
   box-sizing: border-box !important;
 }
-footer{
+
+footer {
   position: absolute;
-  bottom:0px;
-  padding:0;
-  height:30px;
+  bottom: 0px;
+  padding: 0;
+  height: 30px;
   line-height: 30px;
-  left:10px;
-  right:0px;
+  left: 10px;
+  right: 0px;
   z-index: 2;
-  h2{
-    margin:0;
-    float:left;
+
+  h2 {
+    margin: 0;
+    float: left;
   }
-  div.copyright{
-    float:right;
-    a.schibsted-logo{
+
+  div.copyright {
+    float: right;
+
+    a.schibsted-logo {
       opacity: 0.5;
       transition: all 0.4s ease;
-      &:hover{
+
+      &:hover {
         opacity: 1;
       }
       background-image: url("http://www.schibsted.pl/wp-content/themes/schibsted-pl/img/stp_logo.png");
       width: 100px;
       height: 30px;
-      float:right;
+      float: right;
       margin-left: 20px;
-      background-color: rgba(255,255,255,1);
-      background-size:90%;
+      background-color: rgba(255, 255, 255, 1);
+      background-size: 90%;
       background-repeat: no-repeat;
       background-position: 50%;
     }
   }
-
 }

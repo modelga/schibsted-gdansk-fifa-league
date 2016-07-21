@@ -9,7 +9,8 @@ runAfterLoadAllTemplates(function() {
       toDisplay: '',
       displayed: 'displayName',
       fbRef: undefined,
-      teams: {}
+      teams: {},
+      db: undefined
     },
     methods: {
       team: function() {},
@@ -32,12 +33,20 @@ runAfterLoadAllTemplates(function() {
         });
       }
     },
-    events:{
-      logged: function(data){
+    events: {
+      'logged': function(data) {
         this.logged = data;
+        this.$broadcast('logged', data);
       },
-      'store': function(data,callback){
-        console.log("store data"+data);
+      'store': function(data, callback) {
+        var providers = {
+          'github.com': 'github'
+        };
+        console.log("store data" + data);
+        callback = typeof callback != 'function' ? function() {} : callback;
+        console.log(this.logged);
+        data.uid = providers[this.logged.providerId] + ":" + this.logged.uid;
+        this.db.ref('/events').push(data).then(callback);
       }
     },
     created: function() {
@@ -53,12 +62,19 @@ runAfterLoadAllTemplates(function() {
     asyncData: function(resolve) {
       var self = this;
       var db = this.db;
-      db.ref('/events').on('value', function(s) {
-        var events = s.val();
-        _.forEach(events, function(event) {
-          self.$broadcast("data-"+event.name, event);
-        });
+      var broadcast = function(event) {
+        self.$broadcast("data-" + event.name, event);
+      };
+      var reloadApp = function() {
+        window.location.reload();
+      };
+      var ref = db.ref('/events').orderByKey();
+      ref.on('child_added', function(data) {
+        broadcast(data.val());
       });
+      ref.on('child_changed', reloadApp);
+      ref.on('child_removed', reloadApp);
+
     }
   });
 });

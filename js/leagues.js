@@ -6,15 +6,18 @@ loadTemplate('leagues', function(template) {
         showInput: false,
         leagues: [],
         newLeagueName: '',
-        isAdmin: false
+        isAdmin: false,
+        active: undefined
       };
     },
     events: {
       'data-league': function(data) {
+        console.log(data);
         this.leagues.push(data.value);
       },
       'action-choose-league':function(data){
         console.log("choose an league"+ data);
+        this.active = data;
       },
       'logged': function(user){
         this.isAdmin = user && user.isAdmin;
