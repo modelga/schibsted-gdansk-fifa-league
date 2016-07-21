@@ -1,9 +1,9 @@
-<div  v-if="!logged">
-  <li >
+<div v-if="!logged">
+  <li>
     <a href @click="auth"><i class="fa fa-github"></i>Sign In</a>
   </li>
 </div>
-<div >
+<div v-if="logged">
   <li>
     <a href @click="toggleName"><i class="fa fa-github"></i> {{ toDisplay }}</a>
   </li>

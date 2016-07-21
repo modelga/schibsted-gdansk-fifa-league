@@ -39,13 +39,8 @@ runAfterLoadAllTemplates(function() {
         this.$broadcast('logged', data);
       },
       'store': function(data, callback) {
-        var providers = {
-          'github.com': 'github'
-        };
-        console.log("store data" + data);
         callback = typeof callback != 'function' ? function() {} : callback;
-        console.log(this.logged);
-        data.uid = providers[this.logged.providerId] + ":" + this.logged.uid;
+        data.uid = this.logged.uid;
         this.db.ref('/events').push(data).then(callback);
       }
     },

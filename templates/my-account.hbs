@@ -1,10 +1,15 @@
-<h2>My Account</h2>
+<div class="myAccount">
+  <h2>My Account</h2>
 
-Display Name:
+Display Name: <input v-model="logged.displayName" /> <button type="submit" @click="changeName">Change</button></br>
 
 Leagues:
 
+<div class="leagues-list" v-for="league in leagues" track-by="$index">
+{{league}} -
+  <span @click="attempt(league)" v-if="!attempted">attempt</span>
+  <span v-if="member == league">member</span>
+  <span v-else><span v-if="attempted == league">attempted</span></span>
+</div>
 
-I Liga - attempt
-
-{{leagues | json}}
+</div>

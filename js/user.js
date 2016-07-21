@@ -13,8 +13,8 @@ loadTemplate('user', function(template) {
       toDisplay: function() {
         return this.logged[this.displayed];
       },
-      uid : function(){
-        return "github:"+logged.uid;
+      uid: function() {
+        return "github:" + logged.uid;
       }
     },
     methods: {
@@ -42,8 +42,8 @@ loadTemplate('user', function(template) {
       }
     },
     events: {
-      'data-assign-league' : function(data){
-        if(data.who == this.uid){
+      'data-league-assign': function(data) {
+        if (data.who == this.uid) {
           league = data.value;
         }
       }
@@ -54,27 +54,28 @@ loadTemplate('user', function(template) {
       this.$root.fbRef.auth().onAuthStateChanged(function(auth) {
         if (auth !== null) {
           self.logged = auth.providerData[0];
+          self.logged.uid = 'github:' + self.logged.uid;
           self.logged.isAdmin = false;
           self.displayed = 'displayName';
-          db.ref('/users/' + auth.uid).on('value',function(s) {
+          db.ref('/users/' + self.logged.uid).on('value', function(s) {
             var data = s.val();
             if (!data) {
-              db.ref("/users/" + auth.uid).set({
-                displayName: self.logged.displayName
-              });
+              db.ref("/users/" + self.logged.uid).set(self.logged);
+            } else {
+              self.logged.displayName = data.displayName;
             }
-            db.ref('/admins/' + auth.uid).once('value').then(function(snapshot) {
-              self.logged = _.extend(JSON.parse(JSON.stringify(self.logged)), {
+            db.ref('/admins/' + self.logged.uid).once('value').then(function(snapshot) {
+              self.logged = _.extend(_.clone(self.logged), {
                 isAdmin: !!snapshot.val()
               });
-              self.$root.$emit('logged',self.logged);
+              self.$root.$emit('logged', self.logged);
             });
           });
-          self.$root.$emit('logged',self.logged);
+          self.$root.$emit('logged', self.logged);
         } else {
           self.logged = undefined;
           self.displayName = undefined;
-          self.$root.$emit('logged',self.logged);
+          self.$root.$emit('logged', self.logged);
         }
       });
     }
