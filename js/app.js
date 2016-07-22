@@ -31,7 +31,7 @@ runAfterLoadAllTemplates(function() {
             return ("star-o");
           }
         });
-      }
+      },
     },
     events: {
       'logged': function(data) {

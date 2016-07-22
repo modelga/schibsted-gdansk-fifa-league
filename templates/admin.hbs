@@ -1,9 +1,32 @@
 <div class="admin">
 <h2>Admin</h2>
+{{attempts | json}}
+
 List of attempts:
+
 <div v-for="attempt in attempts">
-  {{who}}
+  {{attempt | json}}
 </div>
-
-
+<hr />
+List of users:
+<table>
+  <tr>
+    <td>Name</td>
+    <td>E-mail</td>
+    <td>UID</td>
+    <td>Admin</td>
+    <td>Authorized</td>
+  </tr>
+  <tr v-for="user in users">
+    {{user | json}}
+    <td>{{user.displayName}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.uid}}</td>
+    <td>
+      <span v-if=user.isAdmin>Yes <span @click="demote(user.uid)" v-if="logged.uid != user.uid">demote</span></span>
+      <span v-else>No -  <span @click="promote(user.uid)">promote</span></span>
+    </td>
+    <td><span v-if=user.authorized>Yes</span><span class="action" @click="authorize(user.uid)" v-else>Authorize</span></td>
+  </tr>
+</table>
 </div>

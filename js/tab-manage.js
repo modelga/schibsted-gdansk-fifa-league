@@ -19,8 +19,6 @@ loadTemplate('tab-manage', function(template) {
     },
     methods:{
       activate: function(toActivate){
-        $(".tabs > .tab").removeClass('active tab-left tab-right');
-        $(".tabs > .tab[data-name='"+toActivate+"']").addClass('active');
         this.active = toActivate;
         var tabs = this.tabs;
         $(".tabs > .tab").each(function(){
@@ -44,7 +42,6 @@ loadTemplate('tab-manage', function(template) {
           if(user.isAdmin){
             this.accountTabs.push("Admin");
             this.activate('Admin');
-
           }
           this.activate(this.active);
         }

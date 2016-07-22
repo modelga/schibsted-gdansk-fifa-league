@@ -653,7 +653,7 @@ a:hover {
   text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.3); }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Montserrat", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
   background-color: #000;
@@ -697,6 +697,14 @@ footer {
       background-position: 50%; }
       footer div.copyright a.schibsted-logo:hover {
         opacity: 1; }
+
+.action {
+  cursor: pointer;
+  color: rgba(195, 244, 226, 0.7);
+  text-shadow: 0px 0px 1px black; }
+  .action:hover {
+    color: rgba(37, 198, 138, 0.7);
+    text-shadow: 0px 0px 2px black; }
 
 .tabs {
   position: absolute;

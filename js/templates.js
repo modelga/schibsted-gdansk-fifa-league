@@ -7,7 +7,8 @@ var definedTemplates = {
   "leagues": false,
   "user" : false,
   "tab-manage" : false,
-  "my-account": false
+  "my-account": false,
+  "admin" : false
 };
 function loadTemplate(name, callback) {
   $.get('templates/' + name + '.hbs', function(data) {
