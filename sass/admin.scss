@@ -1,0 +1,6 @@
+.tab > .admin {
+  .prepend-hyphen::before {
+    content: " - ";
+    color: white;
+  }
+}

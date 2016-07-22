@@ -1,5 +1,5 @@
-$basic: transparentize(darken(#42dca3,30%),0.3);
 
+$basic: transparentize(darken(#42dca3, 30%), 0.3);
 @import "grayscale";
 @import "custom";
 @import "user-data";
@@ -7,3 +7,4 @@ $basic: transparentize(darken(#42dca3,30%),0.3);
 @import "tabs";
 @import "navbar";
 @import "leagues";
+@import "admin";

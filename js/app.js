@@ -67,8 +67,8 @@ runAfterLoadAllTemplates(function() {
       ref.on('child_added', function(data) {
         broadcast(data.val());
       });
-      ref.on('child_changed', reloadApp);
-      ref.on('child_removed', reloadApp);
+      // ref.on('child_changed', reloadApp);
+      // ref.on('child_removed', reloadApp);
 
     }
   });

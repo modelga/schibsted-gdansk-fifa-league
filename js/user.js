@@ -13,9 +13,6 @@ loadTemplate('user', function(template) {
       toDisplay: function() {
         return this.logged[this.displayed];
       },
-      uid: function() {
-        return "github:" + logged.uid;
-      }
     },
     methods: {
       auth: function(event) {
@@ -54,7 +51,8 @@ loadTemplate('user', function(template) {
       this.$root.fbRef.auth().onAuthStateChanged(function(auth) {
         if (auth !== null) {
           self.logged = auth.providerData[0];
-          self.logged.uid = 'github:' + self.logged.uid;
+          console.log(auth.providerData);
+          self.logged.uid = 'github:' + self.logged.uid.replace("github:",""); // prevent issues related to github:github: accounts
           self.logged.isAdmin = false;
           self.displayed = 'displayName';
           db.ref('/users/' + self.logged.uid).on('value', function(s) {

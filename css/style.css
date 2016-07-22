@@ -781,3 +781,7 @@ footer {
   .navbar-left .leagues a.league > span.active {
     color: rgba(109, 228, 184, 0.7);
     text-shadow: 0px 0px 4px rgba(37, 198, 138, 0.7); }
+
+.tab > .admin .prepend-hyphen::before {
+  content: " - ";
+  color: white; }
