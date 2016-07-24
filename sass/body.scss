@@ -15,8 +15,40 @@ body {
 
 * {
   box-sizing: border-box !important;
+  font-family: "Montserrat", Helvetica, Arial, sans-serif;
 }
 
+$h: 30px;
+$padd: 5px;
+$border: 1px;
+
+input,button{
+  padding:$padd;
+  margin:0;
+  height: $h;
+  background-color: lighten($basic,5%);
+  border: $border solid darken($basic,10%);
+  line-height: $h - 2*$padd - 2*$border;
+  box-shadow: 0px 0px 2px darken($basic,10%);
+  color:white;
+  transition: all 0.2s ease;
+  letter-spacing: 0.2px;
+  &:focus{
+    outline:none;
+    box-shadow: 0px 0px 2px $basic;
+  }
+  &:hover{
+    background-color: lighten($basic,15%);
+    border: $border solid  $basic;
+    box-shadow: 0px 0px 2px $basic;
+  }
+}
+button{
+  text-transform: uppercase;
+  &:hover{
+    cursor: pointer;
+  }
+}
 footer {
   position: absolute;
   bottom: 0px;

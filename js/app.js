@@ -1,4 +1,13 @@
+
 runAfterLoadAllTemplates(function() {
+  var names = {};
+  Vue.filter('person', function(a,b){
+    if(names.hasOwnProperty(a)){
+      return names[a];
+    }else{
+      return a;
+    }
+  });
   Vue.use(VueAsyncData);
   Vue.config.debug = true;
   new Vue({
@@ -53,6 +62,11 @@ runAfterLoadAllTemplates(function() {
       };
       this.fbRef = firebase.initializeApp(config);
       this.db = this.fbRef.database();
+      this.db.ref('/users').on('value',function(s){
+        _(s.val()).forEach(function(data){
+          names[data.uid] = data.displayName;
+        });
+      });
     },
     asyncData: function(resolve) {
       var self = this;
@@ -67,9 +81,6 @@ runAfterLoadAllTemplates(function() {
       ref.on('child_added', function(data) {
         broadcast(data.val());
       });
-      // ref.on('child_changed', reloadApp);
-      // ref.on('child_removed', reloadApp);
-
     }
   });
 });

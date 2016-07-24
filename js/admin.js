@@ -21,7 +21,9 @@ loadTemplate('admin', function(template) {
         });
       },
       'data-league-assign': function(data) {
-        this.assign = data;
+        this.attempts = _.filter(this.attempts, function(attempt) {
+          return attempt.who != data.who && attempt.where != data.where;
+        });
       },
       'data-league-reject': function(data) {
         this.attempts = _.filter(this.attempts, function(attempt) {
@@ -51,6 +53,10 @@ loadTemplate('admin', function(template) {
       remove: function(uid) {
         this.$root.db.ref("/admins/" + uid).remove();
         this.$root.db.ref("/users/" + uid).remove();
+      },
+      acceptAssignment: function(data) {
+        data.name = 'league-assign';
+        this.$dispatch("store", data);
       }
     }
   }));

@@ -3,10 +3,19 @@
 {{attempts | json}}
 
 List of attempts:
-
-<div v-for="attempt in attempts">
-  {{attempt | json}}
+<table>
+<tr v-for="attempt in attempts">
+  <td>
+    {{attempt.who | person}} is attempting to {{attempt.where}}
+  </td>
+  <td @click="acceptAssignment(attempt)" class="action">
+    Accept
+  </td>
+  <td class="action">
+    Reject
+  </td>
 </div>
+</table>
 <hr />
 List of users:
 <table>

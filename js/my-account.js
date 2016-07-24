@@ -32,6 +32,12 @@ loadTemplate('my-account', function(template) {
         }
       }
     },
+    created: function(){
+
+      this.$root.db.ref('/users').once('value',function(s){
+          console.log(s.val());
+      });
+    },
     methods: {
       attempt: function(league) {
         this.$dispatch('store',{
