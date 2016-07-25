@@ -72,6 +72,7 @@ runAfterLoadAllTemplates(function() {
       var self = this;
       var db = this.db;
       var broadcast = function(event) {
+        console.log(event.name);
         self.$broadcast("data-" + event.name, event);
       };
       var reloadApp = function() {

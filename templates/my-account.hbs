@@ -6,10 +6,10 @@ Display Name: <input v-model="logged.displayName" /> <button type="submit" @clic
 Leagues:
 
 <div class="leagues-list" v-for="league in leagues" track-by="$index">
-{{league}} -
-  <span @click="attempt(league)" v-if="!attempted">attempt</span>
-  <span v-if="member == league">member</span>
-  <span v-else><span v-if="attempted == league">attempted</span></span>
+{{league}}
+  <span @click="attempt(league)" class="prepend-hyphen action" v-if="!attempted && !member">attempt</span>
+  <span class="prepend-hyphen" v-if="member == league">member</span>
+  <span class="prepend-hyphen" v-if="attempted == league && !member">attempted</span>
 </div>
 
 </div>

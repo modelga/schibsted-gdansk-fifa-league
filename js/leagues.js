@@ -7,7 +7,8 @@ loadTemplate('leagues', function(template) {
         leagues: [],
         newLeagueName: '',
         isAdmin: false,
-        active: undefined
+        active: undefined,
+        uid: undefined,
       };
     },
     events: {
@@ -23,6 +24,12 @@ loadTemplate('leagues', function(template) {
       },
       'logged': function(user) {
         this.isAdmin = user && user.isAdmin;
+        this.uid = user.uid;
+      },
+      'data-league-assign': function(data) {
+        if (data.who == this.uid) {
+          this.choose(data.where);
+        }
       }
     },
     methods: {

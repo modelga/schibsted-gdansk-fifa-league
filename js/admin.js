@@ -22,7 +22,7 @@ loadTemplate('admin', function(template) {
       },
       'data-league-assign': function(data) {
         this.attempts = _.filter(this.attempts, function(attempt) {
-          return attempt.who != data.who && attempt.where != data.where;
+          return attempt.who != data.who;
         });
       },
       'data-league-reject': function(data) {
@@ -56,6 +56,10 @@ loadTemplate('admin', function(template) {
       },
       acceptAssignment: function(data) {
         data.name = 'league-assign';
+        this.$dispatch("store", data);
+      },
+      rejectAssignment: function(data) {
+        data.name = 'league-reject';
         this.$dispatch("store", data);
       }
     }

@@ -23,8 +23,10 @@ loadTemplate('tab-manage', function(template) {
         var tabs = this.tabs;
         $(".tabs > .tab").each(function(){
           var tabName = $(this).data('name');
+          var index = (tabs.indexOf(tabName)-tabs.indexOf(toActivate));
+          var width = $(this).parent().width() ;
           $(this).css(
-            "transform","translateX("+ 1500* (tabs.indexOf(tabName)-tabs.indexOf(toActivate))+"px)");
+            "transform","scale("+(1-Math.min(Math.abs(index/2),1))+") translateX("+ (1.5*width * index)+"px)");
         });
       }
     },
@@ -38,10 +40,10 @@ loadTemplate('tab-manage', function(template) {
         this.accountTabs = [];
         if(user){
           this.accountTabs = ["My Account"];
+          this.activate('My Account');
 
           if(user.isAdmin){
             this.accountTabs.push("Admin");
-            this.activate('Admin');
           }
           this.activate(this.active);
         }

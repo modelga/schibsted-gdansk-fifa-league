@@ -40,8 +40,8 @@ loadTemplate('user', function(template) {
     },
     events: {
       'data-league-assign': function(data) {
-        if (data.who == this.uid) {
-          league = data.value;
+        if (data.who == this.logged.uid) {
+          this.league = data.where;
         }
       }
     },

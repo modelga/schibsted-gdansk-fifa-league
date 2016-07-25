@@ -17,23 +17,22 @@ loadTemplate('my-account', function(template) {
         this.logged = _.clone(data);
       },
       'data-league-attempt': function(data){
-        if(data.uid == this.logged.uid){
+        if(this.logged && data.uid == this.logged.uid){
           this.attempted = data.value;
         }
       },
       'data-league-assign' : function(data){
-        if (data.who == this.uid) {
-          this.member = data.value;
+        if (this.logged && data.who === this.logged.uid) {
+          this.member = data.where;
         }
       },
       'data-league-reject' : function(data){
-        if (data.who == this.uid) {
-          this.attempted = undefined;
+        if (data.who === this.logged.uid) {
+          this.attempted = null;
         }
       }
     },
     created: function(){
-
       this.$root.db.ref('/users').once('value',function(s){
           console.log(s.val());
       });

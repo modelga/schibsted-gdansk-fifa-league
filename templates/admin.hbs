@@ -1,7 +1,5 @@
 <div class="admin">
 <h2>Admin</h2>
-{{attempts | json}}
-
 List of attempts:
 <table>
 <tr v-for="attempt in attempts">
@@ -11,12 +9,13 @@ List of attempts:
   <td @click="acceptAssignment(attempt)" class="action">
     Accept
   </td>
-  <td class="action">
+  <td @click="rejectAssignment(attempt)" class="action">
     Reject
   </td>
 </div>
 </table>
 <hr />
+
 List of users:
 <table>
   <tr>
@@ -38,7 +37,6 @@ List of users:
     </td>
     <td><span v-if=user.authorized>Yes</span><span class="action" @click="authorize(user.uid)" v-else>Authorize</span></td>
     <td><span class="action" v-if="logged.uid != user.uid"  @click="remove(user.uid)">Remove</span></td>
-
   </tr>
 </table>
 </div>
