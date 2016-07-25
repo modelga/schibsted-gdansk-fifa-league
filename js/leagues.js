@@ -36,6 +36,9 @@ loadTemplate('leagues', function(template) {
       newLeague: function() {
         this.showInput = !this.showInput;
       },
+      postResult: function(){
+        this.$root.$broadcast('fill-submit');
+      },
       acceptLeague: function() {
         var $vm = this;
         if (this.newLeagueName !== "") {

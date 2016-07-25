@@ -6,6 +6,7 @@ loadTemplate('admin', function(template) {
       return {
         logged: undefined,
         users: [],
+        authorizes:{},
         attempts: [],
         assigns: []
       };
@@ -36,10 +37,13 @@ loadTemplate('admin', function(template) {
       this.$root.db.ref("/users").on('value', function(snapshot) {
         $vm.users = snapshot.val();
       });
+      this.$root.db.ref("/authorized").on('value', function(snapshot) {
+        $vm.authorizes = snapshot.val();
+      });
     },
     methods: {
       authorize: function(uid) {
-        this.$root.db.ref("/users/" + uid + "/authorized").set(true);
+        this.$root.db.ref("/authorized/" + uid).set(true);
         this.refreshUsers();
       },
       promote: function(uid) {

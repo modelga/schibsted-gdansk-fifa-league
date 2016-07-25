@@ -35,7 +35,7 @@ List of users:
       <span v-if=user.isAdmin>Yes <span class="action prepend-hyphen" @click="demote(user.uid)" >demote</span></span>
       <span v-else>No - <span class="action" @click="promote(user.uid)">promote</span></span>
     </td>
-    <td><span v-if=user.authorized>Yes</span><span class="action" @click="authorize(user.uid)" v-else>Authorize</span></td>
+    <td><span v-if="authorizes.hasOwnProperty(user.uid) && authorizes[user.uid]">Yes</span><span class="action" @click="authorize(user.uid)" v-else>Authorize</span></td>
     <td><span class="action" v-if="logged.uid != user.uid"  @click="remove(user.uid)">Remove</span></td>
   </tr>
 </table>

@@ -688,6 +688,11 @@ input, button {
     background-color: rgba(33, 177, 123, 0.7);
     border: 1px solid rgba(21, 112, 78, 0.7);
     box-shadow: 0px 0px 2px rgba(21, 112, 78, 0.7); }
+  input:disabled, button:disabled {
+    color: rgba(143, 143, 143, 0.7);
+    background-color: rgba(67, 67, 67, 0.7);
+    border: 1px solid rgba(92, 92, 92, 0.7);
+    box-shadow: 0px 0px 2px rgba(67, 67, 67, 0.7); }
 
 button {
   text-transform: uppercase; }
@@ -809,3 +814,43 @@ footer {
   .navbar-left .leagues a.league > span.active {
     color: rgba(109, 228, 184, 0.7);
     text-shadow: 0px 0px 4px rgba(37, 198, 138, 0.7); }
+
+.navbar-left .new-league {
+  cursor: pointer;
+  color: silver; }
+  .navbar-left .new-league::before {
+    color: white;
+    font-weight: 900;
+    content: "/ " !important;
+    cursor: text; }
+  .navbar-left .new-league:hover {
+    color: rgba(109, 228, 184, 0.7);
+    text-shadow: 0px 0px 2px silver; }
+
+.navbar-left .post-result::before {
+  content: "/"; }
+
+.autocomplete {
+  position: relative; }
+  .autocomplete input:focus + .prompts {
+    position: absolute;
+    display: block;
+    opacity: 1; }
+  .autocomplete .prompts {
+    display: block;
+    position: absolute;
+    width: 100%;
+    margin: 0px auto;
+    transition: opacity 0.3s ease;
+    opacity: 0; }
+    .autocomplete .prompts span {
+      line-height: 28px;
+      padding: 0px 5px;
+      background: rgba(21, 112, 78, 0.7);
+      display: block;
+      margin-right: 2px;
+      border: 1px solid rgba(13, 69, 48, 0.7); }
+      .autocomplete .prompts span:hover, .autocomplete .prompts span.active {
+        cursor: pointer;
+        background: rgba(37, 198, 138, 0.7);
+        border: 1px solid rgba(29, 155, 108, 0.7); }

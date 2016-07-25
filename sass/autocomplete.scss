@@ -1,0 +1,29 @@
+.autocomplete {
+  position : relative;
+  input:focus + .prompts{
+    position : absolute;
+    display:block;
+    opacity: 1;
+  }
+  .prompts {
+    display:block;
+    position : absolute;
+    width:100%;
+    margin: 0px auto;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    span{
+      line-height: 28px;
+      padding: 0px 5px;
+      background: $basic;
+      display: block;
+      margin-right: 2px;
+      border: 1px solid darken($basic,10%);
+      &:hover, &.active{
+        cursor: pointer;
+        background: lighten($basic,20%);
+        border: 1px solid lighten($basic,10%);
+      }
+    }
+  }
+}

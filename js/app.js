@@ -50,6 +50,7 @@ runAfterLoadAllTemplates(function() {
       'store': function(data, callback) {
         callback = typeof callback != 'function' ? function() {} : callback;
         data.uid = this.logged.uid;
+        data.when = moment().toISOString();
         this.db.ref('/events').push(data).then(callback);
       }
     },
@@ -73,6 +74,7 @@ runAfterLoadAllTemplates(function() {
       var db = this.db;
       var broadcast = function(event) {
         console.log(event.name);
+        event.when = moment(event.when);
         self.$broadcast("data-" + event.name, event);
       };
       var reloadApp = function() {

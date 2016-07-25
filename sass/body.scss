@@ -42,6 +42,12 @@ input,button{
     border: $border solid  $basic;
     box-shadow: 0px 0px 2px $basic;
   }
+  &:disabled{
+      color:grayscale(lighten($basic,30%));
+      background-color: grayscale($basic);
+      border: $border solid  grayscale(lighten($basic,10%));
+      box-shadow: 0px 0px 2px grayscale($basic);
+  }
 }
 button{
   text-transform: uppercase;

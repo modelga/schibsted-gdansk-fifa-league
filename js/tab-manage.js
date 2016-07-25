@@ -40,8 +40,6 @@ loadTemplate('tab-manage', function(template) {
         this.accountTabs = [];
         if(user){
           this.accountTabs = ["My Account"];
-          this.activate('My Account');
-
           if(user.isAdmin){
             this.accountTabs.push("Admin");
           }

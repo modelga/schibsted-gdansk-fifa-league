@@ -1,7 +1,23 @@
 <div class="myAccount">
   <h2>My Account</h2>
-
-Display Name: <input v-model="logged.displayName" /> <button type="submit" @click="changeName">Change</button></br>
+<table>
+  <tr>
+    <td>Display Name<td>
+    <td><input v-model="logged.displayName" /></td>
+    <td> <button type="submit" @click="changeName">Change</button></td>
+  </tr>
+  <tr>
+    <td>My Team<td>
+    <td class="autocomplete"><input v-model="team" :disabled="teamSetState !== 'clean'" />  <div class="prompts">
+        <span v-for="prompt in clubs | filterBy team | limitBy 7" @click="pickTeam(prompt)">{{prompt}}</span>
+      </div></td>
+    <td><button type="submit" @click="changeTeam":disabled="teamSetState !== 'clean'">Set</button>
+      <span v-if="teamSetState === 'selected'">Awaiting approval</span>
+      <span v-if="teamSetState === 'approved'">Approved</span>
+    </td>
+  </tr>
+</table>
+(to check team details please go to <a target="_blank" :href="'http://www.fifaindex.com/en/teams/?name='+team">fifaindex.com</a>)
 
 Leagues:
 
