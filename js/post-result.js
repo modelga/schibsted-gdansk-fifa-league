@@ -100,7 +100,6 @@ loadTemplate('post-result', function(template) {
         }
       },
       isLocked: function(side) {
-
         return this.teamLocks.map(function(theSide) {
             return theSide.name;
           }).indexOf(side.name) !== -1;

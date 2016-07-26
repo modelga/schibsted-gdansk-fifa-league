@@ -30,6 +30,9 @@
     text-align: center;
     min-width: 30px;
 }
+*::slection{
+  background: right: !important;
+}
 .games {
     width: 600px;
     margin: 0 auto;
@@ -168,7 +171,7 @@
   text-transform: uppercase;
   line-height: 20px;
   margin-top: 45px;
-  color: rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.3-);
   left: 0px;
   right: 0px;
   text-align: center;
@@ -380,10 +383,4 @@ font-size: 35px;
   -webkit-filter: blur(10px);
   -moz-filter: blur(10px);
   filter: blur(10px);
-}
-.gray{
-  color: #AAA;
-}
-a:hover{
-  text-shadow: 0px 0px 5px rgba(255,255,255,0.3);
 }

@@ -3,35 +3,31 @@ var definedTemplates = {
   "post-result" : false,
   "results-map" : false,
   "results-table" : false,
-  "top-scorers" : false,
-  "leagues": false,
-  "user" : false,
-  "tab-manage" : false,
-  "my-account": false,
-  "admin" : false
+  "team-score" : false,
+  "top-scorers" : false
 };
 function loadTemplate(name, callback) {
+  console.log(name);
   $.get('templates/' + name + '.hbs', function(data) {
     definedTemplates[name] = data;
     callback(data);
   });
 }
 
-var runAfterLoadAllTemplates = function(callback,time){
+var runAfterLoadAllTemplates = function(callback){
   var checkIfLoaded = function(){
-    var definition;
     for(definition in definedTemplates){
       if(!definedTemplates[definition])
         return false;
+      return true;
     }
-    return true;
   };
-  if(checkIfLoaded() || time > 100){
+  if(checkIfLoaded()){
     callback();
   }else{
     setTimeout(function(){
-      runAfterLoadAllTemplates(callback,(time === undefined ? 0 : time)+1);
-    },15);
+      runAfterLoadAllTemplates(callback);
+    },150);
   }
 
 };

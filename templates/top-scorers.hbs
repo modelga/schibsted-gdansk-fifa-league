@@ -9,7 +9,7 @@
         </tr>
         <tr v-for="(index,player) in scorers">
             <td>{{index + 1}}.</td>
-          <td>{{player.name | person}}</td>
+          <td>{{player.name}}</td>
           <td>{{$root.team(player).name}}</td>
           <td>{{player.goals}}</td>
         </tr>
