@@ -1,0 +1,16 @@
+<div v-if="!logged">
+  <li>
+    <a href @click="auth"><i class="fa fa-github"></i>Sign In</a>
+  </li>
+</div>
+<div v-if="logged">
+  <li>
+    <a href @click="toggleName"><i class="fa fa-github"></i> {{ toDisplay }}</a>
+  </li>
+  <li >
+    <a :class="">{{league}}</a>
+  </li>
+  <li>
+    <a href @click="unAuth"><i class="fa fa-sign-out"></i> Sign Out</a>
+  </li>
+</div>

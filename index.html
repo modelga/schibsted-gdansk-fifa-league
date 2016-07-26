@@ -5,9 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/grayscale.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -16,87 +14,57 @@
     <div class="whole">
     <!-- Navigation -->
 <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                <i class="fa fa-bars"></i>
-            </button>
-            <a class="navbar-brand page-scroll" href="#page-top">
-                <i class="fa fa-play-circle"></i>  <span class="light">Start</span>
-            </a>
+        <div class="navbar-left">
+                <i class="fa fa-play-circle"></i>  <span class="light"></span>
+              <leagues></leagues>
         </div>
-        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-            <ul class="nav navbar-nav" v-if="!logged">
-              <li >
-                <a href @click="auth"><i class="fa fa-github"></i> Sing In</a>
-              </li>
-            </ul>
-            <ul  v-else class="nav navbar-nav">
-              <li>
-                <a href @click="toggleName"><i class="fa fa-github"></i> {{ toDisplay }}</a>
-              </li>
-              <li>
-                <a href @click="unAuth"><i class="fa fa-sign-out"></i> Sign Out</a>
-              </li>
-        </ul>
+        <div class="navbar-right">
+            <user></user>
         </div>
-
-    </div>
 </nav>
 
-<!-- Intro Header -->
-<header class="intro">
-    <div class="intro-body">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <h1 class="brand-heading">Schibsted League</h1>
-                    <p class="intro-text">A table of results for Schibsted's Gdańsk office FIFA 16 league.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
-<section id="results" class="container content-section text-center">
-  <div class="row">
+<div class="tabs">
+  <tab-manage></tab-manage>
+  <div data-name="Table of results" class="tab shown">
     <table-of-results></table-of-results>
+  </div>
+  <div data-name="Top scorers" class="tab shown">
     <top-scorers></top-scorers>
   </div>
-</section>
-
-<section class="container content-section text-center">
-  <div class="row">
+  <div data-name="Games table" class="tab shown">
     <games-table></games-table>
   </div>
-</section>
-
-<section class="container content-section text-center">
-  <div class="row">
+  <div data-name="Result map" class="tab shown">
     <result-map></result-map>
   </div>
-</section>
-
-<!-- Contact Section -->
-<section id="contribute" class="container content-section text-center">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2">
-            <h2>Fell free to contribute on <a href="https://github.com/modelga/schibsted-gdansk-fifa-league">github.com</a></h2>
+  <div data-name="My Account" class="tab">
+    <my-account></my-account>
   </div>
-
+  <div data-name="Admin" class="tab">
+      <admin></admin>
   </div>
-</section>
+  <footer>
+    <h2>Fell free to contribute on <a href="https://github.com/modelga/schibsted-gdansk-fifa-league">github.com</a></h2>
+   <div class="copyright">
+       <span>Schibsted Tech Polska @ 2016</span>
+      <a href="http://www.schibsted.pl"  class="schibsted-logo">
+     </a>
+   </div>
+  </footer>
+</div>
 
-    <footer>
-           <div class="container text-center">
-               <p>Schibsted Tech Polska @ 2016</p>
-           </div>
-    </footer>
+
 </div>
     <post-result></post-result>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
 
-    <script src="https://cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
-
+    <script src="js/vue.js"></script>
+    <script src="js/vue.async.data.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.7.0/vue-resource.min.js"></script>
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/clubs.js"></script>
@@ -106,10 +74,6 @@
     <script src="js/array.unique.js"></script>
 
 
-    <script src="js/vue.js"></script>
-    <script src="js/vue.async.data.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.7.0/vue-resource.min.js"></script>
     <script src="js/templates.js"></script>
 
     <script src="js/table-of-results.js"></script>
@@ -117,6 +81,11 @@
     <script src="js/games-table.js"></script>
     <script src="js/map.js"></script>
     <script src="js/post-result.js"></script>
+    <script src="js/leagues.js"></script>
+    <script src="js/tab-manage.js"></script>
+    <script src="js/my-account.js"></script>
+    <script src="js/user.js"></script>
+    <script src="js/admin.js"></script>
 
     <script src="js/app.js"></script>
 

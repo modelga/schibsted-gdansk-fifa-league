@@ -1,0 +1,11 @@
+
+$basic: transparentize(darken(#42dca3, 30%), 0.3);
+@import "grayscale";
+@import "custom";
+@import "user-data";
+@import "body";
+@import "tabs";
+@import "navbar";
+@import "leagues";
+@import "admin";
+@import "autocomplete";

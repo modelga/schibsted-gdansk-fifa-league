@@ -1,0 +1,7 @@
+<div class="manage">
+  <div @click="activate(tab)"
+  :class="tab == active ? 'active': ''"
+  class="tab-pill" v-for="tab in tabs" track-by="$index">
+  <span>{{tab}}</span>
+  </div>
+</div>

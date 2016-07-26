@@ -1,4 +1,13 @@
+
 runAfterLoadAllTemplates(function() {
+  var names = {};
+  Vue.filter('person', function(a,b){
+    if(names.hasOwnProperty(a)){
+      return names[a];
+    }else{
+      return a;
+    }
+  });
   Vue.use(VueAsyncData);
   Vue.config.debug = true;
   new Vue({
@@ -8,63 +17,12 @@ runAfterLoadAllTemplates(function() {
       logged: undefined,
       toDisplay: '',
       displayed: 'displayName',
-      fbRef: new Firebase("https://fiery-inferno-4213.firebaseio.com/"),
-      teams: {}
+      fbRef: undefined,
+      teams: {},
+      db: undefined
     },
     methods: {
-      winner: function(game) {
-        if (parseInt(game.home.goals) == parseInt(game.away.goals)) {
-          return 'draw';
-        } else if (parseInt(game.home.goals) > parseInt(game.away.goals)) {
-          return 'home';
-        } else {
-          return 'away';
-        }
-      },
-      auth: function(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        var $vc = this;
-        this.fbRef.authWithOAuthPopup("github", function(error, authData) {
-          console.log(error);
-        }, {
-        });
-      },
-      unAuth: function(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        this.fbRef.unauth();
-      },
-      toggleName: function(event) {
-        if (this.displayed == 'displayName') {
-          this.displayed = 'id';
-        } else {
-          this.displayed = 'displayName';
-        }
-        event.preventDefault();
-        event.stopPropagation();
-      },
-      team: function(player, value) {
-        if (typeof player === "object") {
-          player = player.name;
-        }
-
-        if (typeof value !== 'undefined') {
-          return {
-            name: value,
-            score: 0
-          };
-        } else {
-          if (this.teams.hasOwnProperty(player)) {
-            return this.teams[player];
-          } else {
-            return {
-              name: "",
-              score: 0
-            };
-          }
-        }
-      },
+      team: function() {},
       stars: function(team) {
         var foundTeam = _.find(this.teams, function(theTeam) {
           if (theTeam.name === team)
@@ -82,37 +40,49 @@ runAfterLoadAllTemplates(function() {
             return ("star-o");
           }
         });
-      }
-    },
-    computed: {
-      toDisplay: function() {
-        return this.logged[this.displayed];
-      }
+      },
     },
     events: {
-      'on-data': function(data) {
-        this.teams = data.teams;
-        this.$broadcast('on-data', data);
+      'logged': function(data) {
+        this.logged = data;
+        this.$broadcast('logged', data);
+      },
+      'store': function(data, callback) {
+        callback = typeof callback != 'function' ? function() {} : callback;
+        data.uid = this.logged.uid;
+        data.when = moment().toISOString();
+        this.db.ref('/events').push(data).then(callback);
       }
+    },
+    created: function() {
+      var config = {
+        apiKey: "AIzaSyDbPbbC82iKCoFzA3ibCWgSPe8AGPiNt8Q",
+        authDomain: "fiery-inferno-4213.firebaseapp.com",
+        databaseURL: "https://fiery-inferno-4213.firebaseio.com",
+        storageBucket: "fiery-inferno-4213.appspot.com",
+      };
+      this.fbRef = firebase.initializeApp(config);
+      this.db = this.fbRef.database();
+      this.db.ref('/users').on('value',function(s){
+        _(s.val()).forEach(function(data){
+          names[data.uid] = data.displayName;
+        });
+      });
     },
     asyncData: function(resolve) {
       var self = this;
-      this.fbRef.root().on('value', function(s) {
-        data = s.val();
-        if (!data.hasOwnProperty("games")) {
-          data.games = {};
-        }
-        self.$emit('on-data', data);
-      });
-
-      this.fbRef.onAuth(function(auth) {
-        if (auth !== null) {
-          self.logged = auth.github;
-          self.displayed = 'displayName';
-        } else {
-          self.logged = undefined;
-          self.displayName = undefined;
-        }
+      var db = this.db;
+      var broadcast = function(event) {
+        console.log(event.name);
+        event.when = moment(event.when);
+        self.$broadcast("data-" + event.name, event);
+      };
+      var reloadApp = function() {
+        window.location.reload();
+      };
+      var ref = db.ref('/events').orderByKey();
+      ref.on('child_added', function(data) {
+        broadcast(data.val());
       });
     }
   });
