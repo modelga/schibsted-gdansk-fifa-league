@@ -9,6 +9,7 @@ loadTemplate('my-account', function(template) {
         member: undefined,
         teamSetState: 'clean',
         team: "",
+        hideTeams: false,
         clubs: clubs.sort()
       };
     },
@@ -24,22 +25,22 @@ loadTemplate('my-account', function(template) {
           this.attempted = data.value;
         }
       },
-      'data-team-change-request':function(data){
+      'data-team-change-request': function(data) {
         if (this.logged && data.uid == this.logged.uid) {
           this.teamSetState = 'selected';
-          this.team=data.value;
+          this.team = data.value;
         }
       },
-      'team-change-approve':function(data){
+      'team-change-approve': function(data) {
         if (this.logged && data.who == this.logged.uid) {
           this.teamSetState = 'approved';
-          this.team=data.value;
+          this.team = data.value;
         }
       },
-      'team-change-rejected':function(data){
+      'team-change-rejected': function(data) {
         if (this.logged && data.who == this.logged.uid) {
           this.teamSetState = 'clear';
-          this.team="";
+          this.team = "";
         }
       },
       'data-league-assign': function(data) {
@@ -77,8 +78,12 @@ loadTemplate('my-account', function(template) {
         }
       },
       pickTeam: function(team) {
-        console.log("picking " + team);
         this.team = team;
+        this.hideTeams = true;
+        var $vm = this;
+        setTimeout(function() {
+          $vm.hideTeams = false;
+        }, 300);
       }
     }
   }));

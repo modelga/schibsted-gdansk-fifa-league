@@ -1,27 +1,32 @@
 .autocomplete {
   position : relative;
-  input:focus + .prompts{
+  input:focus + .prompts,  .prompts:hover {
     position : absolute;
     display:block;
     opacity: 1;
   }
+
   .prompts {
-    display:block;
+    &.hide{
+      display:none;
+    }
+    display:none;
     position : absolute;
     width:100%;
     margin: 0px auto;
-    transition: opacity 0.3s ease;
-    opacity: 0;
+    height:0px;
+    overflow:none;
+    transition: all 0.3s ease;
     span{
       line-height: 28px;
       padding: 0px 5px;
-      background: $basic;
+      background: opacify($basic,1);
       display: block;
       margin-right: 2px;
       border: 1px solid darken($basic,10%);
       &:hover, &.active{
         cursor: pointer;
-        background: lighten($basic,20%);
+        background: opacify(lighten($basic,20%),1);
         border: 1px solid lighten($basic,10%);
       }
     }

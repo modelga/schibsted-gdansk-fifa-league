@@ -3,8 +3,9 @@ loadTemplate('results-map', function(template) {
     data: function() {
 
       return {
-        players: [],
-        games: {}
+        games: {},
+        leagues: {},
+        league: ""
       };
 
     },
@@ -64,11 +65,34 @@ loadTemplate('results-map', function(template) {
       }
     },
     events: {
-      'on-data': function(data) {
-        this.$data = data;
+      'data-league-assign': function(data) {
+        var copy = _.clone(this.leagues);
+        if (copy.hasOwnProperty(data.where)) {
+          copy[data.where].push(data.who);
+        } else {
+          copy[data.where] = [data.who];
+        }
+        this.leagues = copy;
+      },
+      'data-league': function(data) {
+        if (!this.leagues.hasOwnProperty(data.where)) {
+          var leagues = _.clone(this.leagues);
+          leagues[data.value] = [];
+          this.leagues = leagues;
+        }
+      },
+      'action-choose-league': function(data) {
+        this.league = data;
       }
     },
     computed: {
+      players: function() {
+        if (this.leagues.hasOwnProperty(this.league)) {
+          return this.leagues[this.league].concat(['Avav','DQDQ','ADS']);
+        }else{
+          return [];
+        }
+      },
       playedHome: function() {
         return _.chain(this.games)
           .groupBy(function(game) {

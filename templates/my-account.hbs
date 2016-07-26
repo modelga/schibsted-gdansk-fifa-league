@@ -8,7 +8,7 @@
   </tr>
   <tr>
     <td>My Team<td>
-    <td class="autocomplete"><input v-model="team" :disabled="teamSetState !== 'clean'" />  <div class="prompts">
+    <td class="autocomplete"><input v-model="team" :disabled="teamSetState !== 'clean'" />  <div class="prompts" :class="hideTeams ? 'hide':''">
         <span v-for="prompt in clubs | filterBy team | limitBy 7" @click="pickTeam(prompt)">{{prompt}}</span>
       </div></td>
     <td><button type="submit" @click="changeTeam":disabled="teamSetState !== 'clean'">Set</button>

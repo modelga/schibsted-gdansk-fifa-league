@@ -832,25 +832,28 @@ footer {
 
 .autocomplete {
   position: relative; }
-  .autocomplete input:focus + .prompts {
+  .autocomplete input:focus + .prompts, .autocomplete .prompts:hover {
     position: absolute;
     display: block;
     opacity: 1; }
   .autocomplete .prompts {
-    display: block;
+    display: none;
     position: absolute;
     width: 100%;
     margin: 0px auto;
-    transition: opacity 0.3s ease;
-    opacity: 0; }
+    height: 0px;
+    overflow: none;
+    transition: all 0.3s ease; }
+    .autocomplete .prompts.hide {
+      display: none; }
     .autocomplete .prompts span {
       line-height: 28px;
       padding: 0px 5px;
-      background: rgba(21, 112, 78, 0.7);
+      background: #15704e;
       display: block;
       margin-right: 2px;
       border: 1px solid rgba(13, 69, 48, 0.7); }
       .autocomplete .prompts span:hover, .autocomplete .prompts span.active {
         cursor: pointer;
-        background: rgba(37, 198, 138, 0.7);
+        background: #25c68a;
         border: 1px solid rgba(29, 155, 108, 0.7); }
