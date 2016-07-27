@@ -1,19 +1,31 @@
 <div class="admin">
 <h2>Admin</h2>
-List of attempts:
+Awaiting requests:
 <table>
 <tr v-for="attempt in attempts">
   <td>
-    {{attempt.who | person}} is attempting to {{attempt.where}}
+    <span class="important">{{attempt.who | person}}</span> is attempting to <span class="important">{{attempt.where}}</span>
   </td>
-  <td @click="acceptAssignment(attempt)" class="action">
+  <td @click="leagueAssignment(attempt,'assign')" class="action">
     Accept
   </td>
-  <td @click="rejectAssignment(attempt)" class="action">
+  <td @click="leagueAssignment(attempt,'reject')" class="action">
     Reject
   </td>
-</div>
+</tr>
+<tr v-for="request in teamsRequests">
+  <td>
+    <span class="important">{{request.who | person}}</span> is requesting <span class="important">{{request.team}}</span> as choosen team
+  </td>
+  <td @click="teamRequest(request,'approve')" class="action">
+    Approve
+  </td>
+  <td @click="teamRequest(request,'reject')" class="action">
+    Reject
+  </td>
+</tr>
 </table>
+<span v-if="attempts.length == 0 && teamsRequests.length == 0" class="gray">Currently there is no active requests to approve</span>
 <hr />
 
 List of users:
@@ -22,6 +34,7 @@ List of users:
     <td>Name</td>
     <td>E-mail</td>
     <td>UID</td>
+    <td>League</td>
     <td>Admin</td>
     <td>Authorized</td>
     <td></td>
@@ -31,6 +44,7 @@ List of users:
     <td>{{user.displayName}}</td>
     <td>{{user.email}}</td>
     <td>{{user.uid}}</td>
+    <td>{{assigns[user.uid]}}</td>
     <td>
       <span v-if=user.isAdmin>Yes <span class="action prepend-hyphen" @click="demote(user.uid)" >demote</span></span>
       <span v-else>No - <span class="action" @click="promote(user.uid)">promote</span></span>

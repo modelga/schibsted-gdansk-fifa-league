@@ -6,9 +6,10 @@ loadTemplate('admin', function(template) {
       return {
         logged: undefined,
         users: [],
-        authorizes:{},
+        authorizes: {},
         attempts: [],
-        assigns: []
+        teamsRequests: [],
+        assigns: {}
       };
     },
     events: {
@@ -22,15 +23,26 @@ loadTemplate('admin', function(template) {
         });
       },
       'data-league-assign': function(data) {
-        this.attempts = _.filter(this.attempts, function(attempt) {
-          return attempt.who != data.who;
-        });
+        var assigns = _.clone(this.assigns);
+        assigns[data.who] = data.where;
+        this.assigns = assigns;
+        this.attempts = this.filterUid(this.attempts, data.who);
       },
       'data-league-reject': function(data) {
-        this.attempts = _.filter(this.attempts, function(attempt) {
-          return attempt.uid != data.who;
+        this.attempts = this.filterUid(this.attempts, data.who);
+      },
+      'data-team-change-request': function(data) {
+        this.teamsRequests.push({
+          who: data.uid,
+          team: data.value
         });
-      }
+      },
+      'data-team-change-approve': function(data) {
+        this.teamsRequests = this.filterUid(this.teamsRequests, data.who);
+      },
+      'data-team-change-reject': function(data) {
+        this.teamsRequests = this.filterUid(this.teamsRequests, data.who);
+      },
     },
     created: function() {
       var $vm = this;
@@ -42,6 +54,11 @@ loadTemplate('admin', function(template) {
       });
     },
     methods: {
+      filterUid: function(obj, uid) {
+        return _.filter(obj, function(entry) {
+          return entry.who != uid;
+        });
+      },
       authorize: function(uid) {
         this.$root.db.ref("/authorized/" + uid).set(true);
         this.refreshUsers();
@@ -58,14 +75,14 @@ loadTemplate('admin', function(template) {
         this.$root.db.ref("/admins/" + uid).remove();
         this.$root.db.ref("/users/" + uid).remove();
       },
-      acceptAssignment: function(data) {
-        data.name = 'league-assign';
+      leagueAssignment: function(data, state) {
+        data.name = 'league-' + state;
         this.$dispatch("store", data);
       },
-      rejectAssignment: function(data) {
-        data.name = 'league-reject';
+      teamRequest: function(data, state) {
+        data.name = 'team-change-' + state;
         this.$dispatch("store", data);
-      }
+      },
     }
   }));
 });

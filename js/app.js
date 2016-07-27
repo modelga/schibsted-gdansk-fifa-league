@@ -1,12 +1,15 @@
 
 runAfterLoadAllTemplates(function() {
   var names = {};
-  Vue.filter('person', function(a,b){
+  Vue.filter('person', function(a){
     if(names.hasOwnProperty(a)){
       return names[a];
     }else{
       return a;
     }
+  });
+  Vue.filter('firstChar', function(input){
+    return input.substr(0,1);
   });
   Vue.use(VueAsyncData);
   Vue.config.debug = true;

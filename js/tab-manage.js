@@ -11,14 +11,23 @@ loadTemplate('tab-manage', function(template) {
     created: function() {
       var tabs = [];
       var active;
+      var $vm = this;
       $(".tabs > .tab.shown").each(function() {
         tabs.push( $(this).data("name"));
       });
       this.basicTabs = tabs;
-      this.activate(tabs[0]);
+      this.activate(tabs[0],true);
+      setTimeout(function(){
+        if(window.localStorage['active-tab']){
+          $vm.activate(window.localStorage['active-tab']);
+        }
+      },200);
     },
     methods:{
-      activate: function(toActivate){
+      activate: function(toActivate,programatically){
+        if(!programatically){
+          window.localStorage["active-tab"] = toActivate;
+        }
         this.active = toActivate;
         var tabs = this.tabs;
         $(".tabs > .tab").each(function(){
@@ -43,7 +52,7 @@ loadTemplate('tab-manage', function(template) {
           if(user.isAdmin){
             this.accountTabs.push("Admin");
           }
-          this.activate(this.active);
+          this.activate(this.active,true);
         }
       }
     }

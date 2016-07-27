@@ -736,6 +736,9 @@ footer {
     color: rgba(37, 198, 138, 0.7);
     text-shadow: 0px 0px 2px black; }
 
+.important {
+  color: rgba(66, 220, 163, 0.7); }
+
 .tabs {
   position: absolute;
   overflow: hidden;

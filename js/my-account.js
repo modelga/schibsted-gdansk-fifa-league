@@ -9,6 +9,7 @@ loadTemplate('my-account', function(template) {
         member: undefined,
         teamSetState: 'clean',
         team: "",
+        currentTeam: "",
         hideTeams: false,
         clubs: clubs.sort()
       };
@@ -31,16 +32,17 @@ loadTemplate('my-account', function(template) {
           this.team = data.value;
         }
       },
-      'team-change-approve': function(data) {
+      'data-team-change-approve': function(data) {
         if (this.logged && data.who == this.logged.uid) {
           this.teamSetState = 'approved';
-          this.team = data.value;
+          this.team = data.team;
+          this.currentTeam = data.team;
         }
       },
-      'team-change-rejected': function(data) {
+      'data-team-change-reject': function(data) {
         if (this.logged && data.who == this.logged.uid) {
           this.teamSetState = 'clear';
-          this.team = "";
+          this.team = this.currentTeam;
         }
       },
       'data-league-assign': function(data) {

@@ -8,10 +8,10 @@
   </tr>
   <tr>
     <td>My Team<td>
-    <td class="autocomplete"><input v-model="team" :disabled="teamSetState !== 'clean'" />  <div class="prompts" :class="hideTeams ? 'hide':''">
+    <td class="autocomplete"><input v-model="team" :disabled="teamSetState === 'selected'" />  <div class="prompts" :class="hideTeams ? 'hide':''">
         <span v-for="prompt in clubs | filterBy team | limitBy 7" @click="pickTeam(prompt)">{{prompt}}</span>
       </div></td>
-    <td><button type="submit" @click="changeTeam":disabled="teamSetState !== 'clean'">Set</button>
+    <td><button type="submit" @click="changeTeam" :disabled="teamSetState === 'selected'">Request Change</button>
       <span v-if="teamSetState === 'selected'">Awaiting approval</span>
       <span v-if="teamSetState === 'approved'">Approved</span>
     </td>
