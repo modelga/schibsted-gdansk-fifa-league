@@ -749,13 +749,17 @@ footer {
 table {
   border-collapse: collapse; }
   table tr:nth-child(2n) {
-    background: rgba(0, 0, 0, 0.1); }
-  table tr:nth-child(2n + 1) {
     background: rgba(0, 0, 0, 0.2); }
-  table tr {
-    border-bottom: 1px solid rgba(21, 112, 78, 0.2); }
-    table tr td {
-      padding: 8px; }
+  table tr:nth-child(2n + 1) {
+    background: rgba(0, 0, 0, 0.3); }
+  table tr:not(:last-child) {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5); }
+  table tr td,
+  table tr th {
+    padding: 8px; }
+    table tr td:not(:last-child),
+    table tr th:not(:last-child) {
+      border-right: 1px solid rgba(128, 128, 128, 0.5); }
 
 .tabs {
   position: absolute;

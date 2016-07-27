@@ -122,18 +122,25 @@ table {
   border-collapse: collapse;
 
   tr:nth-child(2n) {
-    background: rgba(0, 0, 0, 0.1);
-  }
-
-  tr:nth-child(2n + 1) {
     background: rgba(0, 0, 0, 0.2);
   }
 
-  tr {
-    border-bottom: 1px solid transparentize($basic, 0.5);
+  tr:nth-child(2n + 1) {
+    background: rgba(0, 0, 0, 0.3);
+  }
 
-    td {
+  tr {
+    &:not(:last-child) {
+      border-bottom: 1px solid transparentize(gray, 0.5);
+    }
+
+    td,
+    th {
       padding: 8px;
+
+      &:not(:last-child) {
+        border-right: 1px solid transparentize(gray, 0.5);
+      }
     }
   }
 }
