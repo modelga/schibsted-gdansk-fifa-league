@@ -17,44 +17,50 @@ body {
   box-sizing: border-box !important;
   font-family: "Montserrat", Helvetica, Arial, sans-serif;
 }
-
 $h: 30px;
 $padd: 5px;
 $border: 1px;
 
-input,button{
-  padding:$padd;
-  margin:0;
+input,
+button {
+  padding: $padd;
+  margin: 0;
   height: $h;
-  background-color: lighten($basic,5%);
-  border: $border solid darken($basic,10%);
-  line-height: $h - 2*$padd - 2*$border;
-  box-shadow: 0px 0px 2px darken($basic,10%);
-  color:white;
+  background-color: lighten($basic, 5%);
+  border: $border solid darken($basic, 10%);
+  line-height: $h - 2 * $padd - 2 * $border;
+  box-shadow: 0px 0px 2px darken($basic, 10%);
+  color: white;
   transition: all 0.2s ease;
   letter-spacing: 0.2px;
-  &:focus{
-    outline:none;
+
+  &:focus {
+    outline: none;
     box-shadow: 0px 0px 2px $basic;
   }
-  &:hover{
-    background-color: lighten($basic,15%);
-    border: $border solid  $basic;
+
+  &:hover {
+    background-color: lighten($basic, 15%);
+    border: $border solid $basic;
     box-shadow: 0px 0px 2px $basic;
   }
-  &:disabled{
-      color:grayscale(lighten($basic,30%));
-      background-color: grayscale($basic);
-      border: $border solid  grayscale(lighten($basic,10%));
-      box-shadow: 0px 0px 2px grayscale($basic);
+
+  &:disabled {
+    color: grayscale(lighten($basic, 30%));
+    background-color: grayscale($basic);
+    border: $border solid grayscale(lighten($basic, 10%));
+    box-shadow: 0px 0px 2px grayscale($basic);
   }
 }
-button{
+
+button {
   text-transform: uppercase;
-  &:hover{
+
+  &:hover {
     cursor: pointer;
   }
 }
+
 footer {
   position: absolute;
   bottom: 0px;
@@ -104,7 +110,30 @@ footer {
   }
 }
 
-.important{
-
+.important {
   color: lighten($basic, 30%);
+}
+
+.full-width {
+  width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+
+  tr:nth-child(2n) {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  tr:nth-child(2n + 1) {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  tr {
+    border-bottom: 1px solid transparentize($basic, 0.5);
+
+    td {
+      padding: 8px;
+    }
+  }
 }

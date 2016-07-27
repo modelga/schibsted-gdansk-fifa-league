@@ -9,7 +9,7 @@ loadTemplate('admin', function(template) {
         authorizes: {},
         attempts: [],
         teamsRequests: [],
-        assigns: {}
+        assigns: {team:{},league:{}}
       };
     },
     events: {
@@ -23,9 +23,9 @@ loadTemplate('admin', function(template) {
         });
       },
       'data-league-assign': function(data) {
-        var assigns = _.clone(this.assigns);
+        var assigns = _.clone(this.assigns.league);
         assigns[data.who] = data.where;
-        this.assigns = assigns;
+        this.assigns.league = assigns;
         this.attempts = this.filterUid(this.attempts, data.who);
       },
       'data-league-reject': function(data) {
@@ -38,6 +38,9 @@ loadTemplate('admin', function(template) {
         });
       },
       'data-team-change-approve': function(data) {
+        var assigns = _.clone(this.assigns.team);
+        assigns[data.who] = data.team;
+        this.assigns.team = assigns;
         this.teamsRequests = this.filterUid(this.teamsRequests, data.who);
       },
       'data-team-change-reject': function(data) {

@@ -29,22 +29,24 @@ Awaiting requests:
 <hr />
 
 List of users:
-<table>
+<table class="full-width">
   <tr>
-    <td>Name</td>
-    <td>E-mail</td>
-    <td>UID</td>
-    <td>League</td>
-    <td>Admin</td>
-    <td>Authorized</td>
-    <td></td>
+    <th>Name</th>
+    <th>E-mail</th>
+    <th>UID</th>
+    <th>League</th>
+    <th>Team</th>
+    <th>Admin</th>
+    <th>Authorized</th>
+    <th></th>
   </tr>
   <tr v-for="user in users">
     {{user | json}}
     <td>{{user.displayName}}</td>
     <td>{{user.email}}</td>
     <td>{{user.uid}}</td>
-    <td>{{assigns[user.uid]}}</td>
+    <td>{{assigns.league[user.uid]}}</td>
+    <td>{{assigns.team[user.uid]}}</td>
     <td>
       <span v-if=user.isAdmin>Yes <span class="action prepend-hyphen" @click="demote(user.uid)" >demote</span></span>
       <span v-else>No - <span class="action" @click="promote(user.uid)">promote</span></span>
