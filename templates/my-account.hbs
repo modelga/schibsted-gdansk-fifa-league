@@ -2,12 +2,12 @@
   <h2>My Account</h2>
 <table>
   <tr>
-    <td>Display Name<td>
+    <td>Display Name</td>
     <td><input v-model="logged.displayName" /></td>
     <td> <button type="submit" @click="changeName">Change</button></td>
   </tr>
   <tr>
-    <td>My Team<td>
+    <td>My Team</td>
     <td class="autocomplete"><input v-model="team" :disabled="teamSetState === 'selected'" />  <div class="prompts" :class="hideTeams ? 'hide':''">
         <span v-for="prompt in clubs | filterBy team | limitBy 7" @click="pickTeam(prompt)">{{prompt}}</span>
       </div></td>
@@ -16,16 +16,27 @@
       <span v-if="teamSetState === 'approved'">Approved</span>
     </td>
   </tr>
+  <tr>
+    <td>
+      League
+    </td>
+    <td>
+      <div class="leagues-list" v-for="league in leagues" track-by="$index">
+      <input type="radio" v-model="li" :value="league" :checked="member == league" />{{league}}
+        <span @click="attempt(league)" class="prepend-hyphen action" v-if="!attempted && !member">attempt</span>
+        <span class="prepend-hyphen" v-if="member == league">member</span>
+        <span class="prepend-hyphen" v-if="attempted == league && !member">attempted</span>
+      </div>
+    </td>
+    <td>
+      <button type="submit" @click="attempt(li)" :disabled="!!member || !!attempted" >Request Attempt</button>
+    </td>
+  </tr>
 </table>
 (to check team details please go to <a target="_blank" :href="'http://www.fifaindex.com/en/teams/?name='+team">fifaindex.com</a>)
 
 Leagues:
 
-<div class="leagues-list" v-for="league in leagues" track-by="$index">
-{{league}}
-  <span @click="attempt(league)" class="prepend-hyphen action" v-if="!attempted && !member">attempt</span>
-  <span class="prepend-hyphen" v-if="member == league">member</span>
-  <span class="prepend-hyphen" v-if="attempted == league && !member">attempted</span>
-</div>
+
 
 </div>
