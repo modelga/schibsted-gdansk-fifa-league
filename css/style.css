@@ -47,7 +47,6 @@ a:focus {
 
 .navbar-custom {
   margin-bottom: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   text-transform: uppercase;
   font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
   background-color: #000; }
@@ -95,7 +94,7 @@ a:focus {
 
 @media (min-width: 768px) {
   .navbar-custom {
-    padding: 20px 0;
+    padding: 0;
     border-bottom: 0;
     letter-spacing: 1px;
     background: 0 0;
@@ -104,7 +103,6 @@ a:focus {
     transition: background .5s ease-in-out,padding .5s ease-in-out; }
   .navbar-custom.top-nav-collapse {
     padding: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     background: #000; } }
 
 .intro {
@@ -459,6 +457,330 @@ body {
   text-align: center;
   background: linear-gradient(90deg, transparent 25%, black 50%, transparent 75%); }
 
+.gray {
+  color: #AAA; }
+
+a:hover {
+  text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.3); }
+
+body {
+  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  background-color: #000;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url("https://static.pexels.com/photos/39562/the-ball-stadion-football-the-pitch-39562.jpeg");
+  background-size: cover;
+  background-position: 0 0, 80% 0;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: white;
+  margin: 20px;
+  margin-top: 50px; }
+  @media (max-width: 1100px) {
+    body {
+      font-size: 10px; } }
+
+* {
+  box-sizing: border-box !important;
+  font-family: "Montserrat", Helvetica, Arial, sans-serif; }
+
+input[type="text"],
+button {
+  padding: 5px;
+  margin: 0;
+  height: 30px;
+  background-color: rgba(25, 134, 93, 0.7);
+  border: 1px solid rgba(13, 69, 48, 0.7);
+  line-height: 18px;
+  box-shadow: 0px 0px 2px rgba(13, 69, 48, 0.7);
+  color: white;
+  transition: all 0.2s ease;
+  letter-spacing: 0.2px; }
+  input[type="text"]:focus,
+  button:focus {
+    outline: none;
+    box-shadow: 0px 0px 2px rgba(21, 112, 78, 0.7); }
+  input[type="text"]:hover,
+  button:hover {
+    background-color: rgba(33, 177, 123, 0.7);
+    border: 1px solid rgba(21, 112, 78, 0.7);
+    box-shadow: 0px 0px 2px rgba(21, 112, 78, 0.7); }
+  input[type="text"]:disabled,
+  button:disabled {
+    color: rgba(143, 143, 143, 0.7);
+    background-color: rgba(67, 67, 67, 0.7);
+    border: 1px solid rgba(92, 92, 92, 0.7);
+    box-shadow: 0px 0px 2px rgba(67, 67, 67, 0.7); }
+
+label {
+  height: 30px;
+  line-height: 30px;
+  display: block;
+  cursor: pointer; }
+  label input[type="radio"] {
+    display: none; }
+    label input[type="radio"]:checked + ::before {
+      content: "\f05d"; }
+    label input[type="radio"] + ::before {
+      content: "\f10c";
+      font-family: "FontAwesome";
+      font-size: 20px;
+      line-height: 30px;
+      display: inline-block;
+      float: left;
+      color: white;
+      width: 28px;
+      text-align: center;
+      height: 28px;
+      margin: 0;
+      border-right: 2px solid rgba(0, 0, 0, 0.2);
+      transition: all 0.6s ease; }
+      @media (max-width: 1100px) {
+        label input[type="radio"] + ::before {
+          font-size: 10px; } }
+  label *:last-child {
+    border: 1px solid rgba(13, 69, 48, 0.7);
+    line-height: 18px;
+    box-shadow: 0px 0px 2px rgba(13, 69, 48, 0.7);
+    display: block;
+    margin: 4px 0px;
+    text-align: center;
+    height: 30px;
+    background-color: rgba(25, 134, 93, 0.7);
+    line-height: 30px;
+    padding: 0px 6px 0px 0px;
+    height: 30px; }
+    label *:last-child:hover {
+      background-color: rgba(33, 177, 123, 0.7);
+      border: 1px solid rgba(21, 112, 78, 0.7);
+      box-shadow: 0px 0px 2px rgba(21, 112, 78, 0.7); }
+    label *:last-child:disabled {
+      color: rgba(143, 143, 143, 0.7);
+      background-color: rgba(67, 67, 67, 0.7);
+      border: 1px solid rgba(92, 92, 92, 0.7);
+      box-shadow: 0px 0px 2px rgba(67, 67, 67, 0.7); }
+
+button {
+  text-transform: uppercase; }
+  button:hover {
+    cursor: pointer; }
+
+footer {
+  position: absolute;
+  bottom: 0px;
+  padding: 0;
+  height: 30px;
+  line-height: 30px;
+  left: 10px;
+  right: 0px;
+  z-index: 2; }
+  footer h2 {
+    margin: 0;
+    float: left; }
+  footer div.copyright {
+    float: right; }
+    footer div.copyright a.schibsted-logo {
+      opacity: 0.5;
+      transition: all 0.4s ease;
+      background-image: url("http://www.schibsted.pl/wp-content/themes/schibsted-pl/img/stp_logo.png");
+      width: 100px;
+      height: 30px;
+      float: right;
+      margin-left: 20px;
+      background-color: white;
+      background-size: 90%;
+      background-repeat: no-repeat;
+      background-position: 50%; }
+      footer div.copyright a.schibsted-logo:hover {
+        opacity: 1; }
+
+.action {
+  cursor: pointer;
+  color: rgba(195, 244, 226, 0.7);
+  text-shadow: 0px 0px 1px black; }
+  .action:hover {
+    color: rgba(37, 198, 138, 0.7);
+    text-shadow: 0px 0px 2px black; }
+
+.important {
+  color: rgba(66, 220, 163, 0.7); }
+
+.full-width {
+  width: 100%; }
+
+table {
+  border-collapse: collapse; }
+  table tr:nth-child(2n) {
+    background: rgba(0, 0, 0, 0.2); }
+  table tr:nth-child(2n + 1) {
+    background: rgba(0, 0, 0, 0.3); }
+  table tr:not(:last-child) {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5); }
+  table tr td,
+  table tr th {
+    padding: 8px; }
+    table tr td:not(:last-child),
+    table tr th:not(:last-child) {
+      border-right: 1px solid rgba(128, 128, 128, 0.5); }
+
+.tabs {
+  position: absolute;
+  overflow: hidden;
+  top: 75px;
+  bottom: 0px;
+  margin-bottom: 35px;
+  left: 30px;
+  right: 30px;
+  min-height: 500px;
+  box-shadow: 0px 0px 10px black, 0px 0px 1px black, 0px 0px 150px black, 0px 50px 300px black; }
+  @media (max-width: 768px) {
+    .tabs {
+      margin-bottom: 10px;
+      left: 5px;
+      right: 5px;
+      min-height: 1000px; } }
+  .tabs .manage {
+    height: 33px;
+    border-bottom: 3px solid rgba(66, 220, 163, 0.7);
+    background: rgba(21, 112, 78, 0.3); }
+    .tabs .manage .tab-pill {
+      cursor: pointer;
+      width: 115px;
+      float: left;
+      height: 30px;
+      background: rgba(21, 112, 78, 0.7);
+      font-family: 'Montserrat';
+      text-transform: uppercase;
+      line-height: 30px;
+      box-shadow: inset 0px 0px 1px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      transition: all 0.3s ease;
+      overflow: hidden; }
+      @media (max-width: 480px) {
+        .tabs .manage .tab-pill {
+          max-width: 50px;
+          font-size: 11px; } }
+      @media (max-width: 768px) {
+        .tabs .manage .tab-pill.active {
+          max-width: 100px; } }
+      @media (min-width: 480px) and (max-width: 768px) {
+        .tabs .manage .tab-pill {
+          width: 75px;
+          font-size: 12px; } }
+      .tabs .manage .tab-pill:hover, .tabs .manage .tab-pill.active {
+        background: rgba(29, 155, 108, 0.7); }
+  .tabs .tab {
+    width: 100%;
+    padding: 20px;
+    top: 33px;
+    bottom: 0;
+    position: absolute;
+    transition: all 0.5s ease;
+    overflow: auto;
+    transform: translateX(-1000px); }
+    .tabs .tab .prepend-hyphen::before {
+      content: " - ";
+      color: white; }
+
+.navbar-fixed-top {
+  background: transparent;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  width: 100%;
+  left: 0;
+  transition: all 0.6s ease;
+  line-height: 30px;
+  height: 30px;
+  font-size: 16px; }
+  @media (max-width: 768px) {
+    .navbar-fixed-top {
+      font-size: 12px;
+      height: 60px; } }
+  .navbar-fixed-top .descriptions {
+    display: inline-block;
+    height: 30px; }
+  .navbar-fixed-top .input {
+    height: 30px;
+    display: inline-block; }
+    .navbar-fixed-top .input > * {
+      display: inline-block; }
+  .navbar-fixed-top.dimmed {
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 2px 3px black; }
+  .navbar-fixed-top > div {
+    display: block;
+    position: absolute; }
+    @media (max-width: 768px) {
+      .navbar-fixed-top > div {
+        position: relative; } }
+    .navbar-fixed-top > div.navbar-left {
+      left: 20px; }
+    .navbar-fixed-top > div.navbar-right {
+      right: 20px; }
+      @media (max-width: 768px) {
+        .navbar-fixed-top > div.navbar-right {
+          left: 20px; } }
+      .navbar-fixed-top > div.navbar-right li {
+        display: table-cell; }
+        .navbar-fixed-top > div.navbar-right li:not(:first-child) {
+          padding-left: 20px; }
+
+.navbar-left .leagues {
+  display: inline-block; }
+  .navbar-left .leagues a.league > span {
+    color: rgba(29, 155, 108, 0.7); }
+    .navbar-left .leagues a.league > span:hover {
+      color: rgba(66, 220, 163, 0.7); }
+  .navbar-left .leagues a.league:not(:last-child)::after {
+    content: " / "; }
+  .navbar-left .leagues a.league > span.active {
+    color: rgba(109, 228, 184, 0.7);
+    text-shadow: 0px 0px 4px rgba(37, 198, 138, 0.7); }
+
+.navbar-left .new-league {
+  cursor: pointer;
+  color: silver; }
+  .navbar-left .new-league::before {
+    color: white;
+    font-weight: 900;
+    content: "/ " !important;
+    cursor: text; }
+  .navbar-left .new-league:hover {
+    color: rgba(109, 228, 184, 0.7);
+    text-shadow: 0px 0px 2px silver; }
+
+.navbar-left .post-result::before {
+  content: "/"; }
+
+.autocomplete {
+  position: relative; }
+  .autocomplete input:focus + .prompts, .autocomplete .prompts:hover {
+    position: absolute;
+    display: block;
+    opacity: 1; }
+  .autocomplete .prompts {
+    display: none;
+    position: absolute;
+    width: 100%;
+    margin: 0px auto;
+    height: 0px;
+    overflow: none;
+    transition: all 0.3s ease; }
+    .autocomplete .prompts.hide {
+      display: none; }
+    .autocomplete .prompts span {
+      line-height: 28px;
+      padding: 0px 5px;
+      background: #15704e;
+      display: block;
+      margin-right: 2px;
+      border: 1px solid rgba(13, 69, 48, 0.7); }
+      .autocomplete .prompts span:hover, .autocomplete .prompts span.active {
+        cursor: pointer;
+        background: #25c68a;
+        border: 1px solid rgba(29, 155, 108, 0.7); }
+
 #post-results {
   position: fixed;
   z-index: 9998;
@@ -468,20 +790,19 @@ body {
   bottom: 0;
   box-sizing: border-box;
   margin: auto auto;
-  background: rgba(0, 0, 0, 0.4);
   transition: all .6s ease; }
 
 #post-results .inner {
-  width: 640px;
-  height: 480px;
+  width: 100%;
+  height: 100%;
   left: 0;
   right: 0;
-  bottom: 0;
   top: 0;
   position: absolute;
-  background: rgba(33, 33, 33, 0.7);
+  background: rgba(0, 0, 0, 0.7);
   padding: 20px;
-  box-shadow: 0px 0px 3px rgba(255, 255, 255, 0.4);
+  border-bottom: 1px solid black;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8);
   margin: auto; }
 
 #post-results .name {
@@ -516,7 +837,7 @@ body {
 
 .modal-enter, .modal-leave {
   opacity: 0;
-  transform: scale(1.6);
+  transform: translateY(-2000px);
   -webkit-filter: blur(20px);
   -moz-filter: blur(20px);
   filter: blur(20px); }
@@ -642,243 +963,6 @@ body {
   filter: blur(0px); }
 
 .blurred {
-  -webkit-filter: blur(10px);
-  -moz-filter: blur(10px);
-  filter: blur(10px); }
-
-.gray {
-  color: #AAA; }
-
-a:hover {
-  text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.3); }
-
-body {
-  font-family: "Montserrat", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.42857143;
-  background-color: #000;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url("https://static.pexels.com/photos/39562/the-ball-stadion-football-the-pitch-39562.jpeg");
-  background-size: cover;
-  background-position: 0 0, 80% 0;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  color: white;
-  margin: 20px;
-  margin-top: 50px; }
-
-* {
-  box-sizing: border-box !important;
-  font-family: "Montserrat", Helvetica, Arial, sans-serif; }
-
-input,
-button {
-  padding: 5px;
-  margin: 0;
-  height: 30px;
-  background-color: rgba(25, 134, 93, 0.7);
-  border: 1px solid rgba(13, 69, 48, 0.7);
-  line-height: 18px;
-  box-shadow: 0px 0px 2px rgba(13, 69, 48, 0.7);
-  color: white;
-  transition: all 0.2s ease;
-  letter-spacing: 0.2px; }
-  input:focus,
-  button:focus {
-    outline: none;
-    box-shadow: 0px 0px 2px rgba(21, 112, 78, 0.7); }
-  input:hover,
-  button:hover {
-    background-color: rgba(33, 177, 123, 0.7);
-    border: 1px solid rgba(21, 112, 78, 0.7);
-    box-shadow: 0px 0px 2px rgba(21, 112, 78, 0.7); }
-  input:disabled,
-  button:disabled {
-    color: rgba(143, 143, 143, 0.7);
-    background-color: rgba(67, 67, 67, 0.7);
-    border: 1px solid rgba(92, 92, 92, 0.7);
-    box-shadow: 0px 0px 2px rgba(67, 67, 67, 0.7); }
-
-button {
-  text-transform: uppercase; }
-  button:hover {
-    cursor: pointer; }
-
-footer {
-  position: absolute;
-  bottom: 0px;
-  padding: 0;
-  height: 30px;
-  line-height: 30px;
-  left: 10px;
-  right: 0px;
-  z-index: 2; }
-  footer h2 {
-    margin: 0;
-    float: left; }
-  footer div.copyright {
-    float: right; }
-    footer div.copyright a.schibsted-logo {
-      opacity: 0.5;
-      transition: all 0.4s ease;
-      background-image: url("http://www.schibsted.pl/wp-content/themes/schibsted-pl/img/stp_logo.png");
-      width: 100px;
-      height: 30px;
-      float: right;
-      margin-left: 20px;
-      background-color: white;
-      background-size: 90%;
-      background-repeat: no-repeat;
-      background-position: 50%; }
-      footer div.copyright a.schibsted-logo:hover {
-        opacity: 1; }
-
-.action {
-  cursor: pointer;
-  color: rgba(195, 244, 226, 0.7);
-  text-shadow: 0px 0px 1px black; }
-  .action:hover {
-    color: rgba(37, 198, 138, 0.7);
-    text-shadow: 0px 0px 2px black; }
-
-.important {
-  color: rgba(66, 220, 163, 0.7); }
-
-.full-width {
-  width: 100%; }
-
-table {
-  border-collapse: collapse; }
-  table tr:nth-child(2n) {
-    background: rgba(0, 0, 0, 0.2); }
-  table tr:nth-child(2n + 1) {
-    background: rgba(0, 0, 0, 0.3); }
-  table tr:not(:last-child) {
-    border-bottom: 1px solid rgba(128, 128, 128, 0.5); }
-  table tr td,
-  table tr th {
-    padding: 8px; }
-    table tr td:not(:last-child),
-    table tr th:not(:last-child) {
-      border-right: 1px solid rgba(128, 128, 128, 0.5); }
-
-.tabs {
-  position: absolute;
-  overflow: hidden;
-  top: 75px;
-  bottom: 0px;
-  margin-bottom: 35px;
-  left: 30px;
-  right: 30px;
-  min-height: 100px;
-  box-shadow: 0px 0px 10px black, 0px 0px 1px black, 0px 0px 150px black, 0px 50px 300px black; }
-  .tabs .manage {
-    height: 33px;
-    border-bottom: 3px solid rgba(66, 220, 163, 0.7);
-    background: rgba(21, 112, 78, 0.3); }
-    .tabs .manage .tab-pill {
-      cursor: pointer;
-      width: 165px;
-      float: left;
-      height: 30px;
-      background: rgba(21, 112, 78, 0.7);
-      font-family: 'Montserrat';
-      text-transform: uppercase;
-      line-height: 30px;
-      box-shadow: inset 0px 0px 1px rgba(0, 0, 0, 0.5);
-      text-align: center;
-      transition: all 0.3s ease; }
-      .tabs .manage .tab-pill:hover, .tabs .manage .tab-pill.active {
-        background: rgba(29, 155, 108, 0.7); }
-  .tabs .tab {
-    width: 100%;
-    padding: 20px;
-    top: 33px;
-    bottom: 0;
-    position: absolute;
-    transition: all 0.5s ease;
-    overflow: auto;
-    transform: translateX(-1000px); }
-    .tabs .tab .prepend-hyphen::before {
-      content: " - ";
-      color: white; }
-
-.navbar-fixed-top {
-  background: transparent;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 150px;
-  left: 0;
-  transition: all 0.6s ease;
-  overflow: hidden;
-  font-size: 16px; }
-  .navbar-fixed-top.dimmed {
-    background: rgba(0, 0, 0, 0.8);
-    box-shadow: 0px 2px 3px black;
-    height: 70px; }
-  .navbar-fixed-top > div {
-    display: inline-block;
-    position: absolute; }
-    .navbar-fixed-top > div.navbar-left {
-      left: 20px; }
-    .navbar-fixed-top > div.navbar-right {
-      right: 20px; }
-      .navbar-fixed-top > div.navbar-right li {
-        display: table-cell; }
-        .navbar-fixed-top > div.navbar-right li:not(:first-child) {
-          padding-left: 20px; }
-
-.navbar-left .leagues {
-  display: inline-block; }
-  .navbar-left .leagues a.league > span {
-    color: rgba(29, 155, 108, 0.7); }
-    .navbar-left .leagues a.league > span:hover {
-      color: rgba(66, 220, 163, 0.7); }
-  .navbar-left .leagues a.league:not(:last-child)::after {
-    content: " / "; }
-  .navbar-left .leagues a.league > span.active {
-    color: rgba(109, 228, 184, 0.7);
-    text-shadow: 0px 0px 4px rgba(37, 198, 138, 0.7); }
-
-.navbar-left .new-league {
-  cursor: pointer;
-  color: silver; }
-  .navbar-left .new-league::before {
-    color: white;
-    font-weight: 900;
-    content: "/ " !important;
-    cursor: text; }
-  .navbar-left .new-league:hover {
-    color: rgba(109, 228, 184, 0.7);
-    text-shadow: 0px 0px 2px silver; }
-
-.navbar-left .post-result::before {
-  content: "/"; }
-
-.autocomplete {
-  position: relative; }
-  .autocomplete input:focus + .prompts, .autocomplete .prompts:hover {
-    position: absolute;
-    display: block;
-    opacity: 1; }
-  .autocomplete .prompts {
-    display: none;
-    position: absolute;
-    width: 100%;
-    margin: 0px auto;
-    height: 0px;
-    overflow: none;
-    transition: all 0.3s ease; }
-    .autocomplete .prompts.hide {
-      display: none; }
-    .autocomplete .prompts span {
-      line-height: 28px;
-      padding: 0px 5px;
-      background: #15704e;
-      display: block;
-      margin-right: 2px;
-      border: 1px solid rgba(13, 69, 48, 0.7); }
-      .autocomplete .prompts span:hover, .autocomplete .prompts span.active {
-        cursor: pointer;
-        background: #25c68a;
-        border: 1px solid rgba(29, 155, 108, 0.7); }
+  -webkit-filter: blur(20px);
+  -moz-filter: blur(20px);
+  filter: blur(20px); }

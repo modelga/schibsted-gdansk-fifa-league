@@ -6,8 +6,15 @@
   margin-bottom: 35px;
   left: 30px;
   right: 30px;
-  min-height: 100px;
+  min-height: 500px;
 
+  @media(max-width: 768px){
+    margin-bottom: 10px;
+    left: 5px;
+    right: 5px;
+    min-height: 1000px;
+
+  }
   .manage {
     height: 33px;
     border-bottom: 3px solid lighten($basic, 30%);
@@ -15,7 +22,7 @@
 
     .tab-pill {
       cursor: pointer;
-      width: 165px;
+      width: 115px;
       float: left;
       height: 30px;
       background: $basic;
@@ -25,7 +32,20 @@
       box-shadow: inset 0px 0px 1px rgba(0, 0, 0, 0.5);
       text-align: center;
       transition: all 0.3s ease;
-
+      overflow: hidden;
+      @media (max-width: 480px){
+          max-width: 50px;
+          font-size: 11px;
+      }
+      @media (max-width: 768px){
+        &.active {
+          max-width: 100px;
+        }
+      }
+      @media(min-width: 480px) and (max-width: 768px){
+        width: 75px;
+        font-size: 12px;
+      }
       &:hover,
       &.active {
         background: lighten($basic, 10%);

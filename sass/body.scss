@@ -1,4 +1,7 @@
 body {
+  @media(max-width: 1100px){
+    font-size: 10px;
+  }
   font-family: "Montserrat", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
@@ -21,7 +24,7 @@ $h: 30px;
 $padd: 5px;
 $border: 1px;
 
-input,
+input[type="text"],
 button {
   padding: $padd;
   margin: 0;
@@ -53,6 +56,63 @@ button {
   }
 }
 
+label{
+  height: 30px;
+  line-height: 30px;
+  display: block;
+  cursor: pointer;
+    input[type="radio"]{
+      display:none;
+      &:checked + ::before{
+        content:"\f05d";
+      }
+      + ::before{
+      content:"\f10c";
+      font-family:"FontAwesome";
+      font-size:20px;
+      @media(max-width: 1100px){
+        font-size: 10px;
+      }
+      line-height: 30px;
+      display: inline-block;
+      float:left;
+      color: white;
+      width:28px;
+      text-align: center;
+      height: 28px;
+      margin:0;
+      border-right:2px solid rgba(0,0,0,0.2);
+      transition:all 0.6s ease;
+      }
+    }
+   *:last-child{
+     border: $border solid darken($basic, 10%);
+     line-height: $h - 2 * $padd - 2 * $border;
+     box-shadow: 0px 0px 2px darken($basic, 10%);
+    display: block;
+    margin:4px 0px;
+    text-align: center;
+    height: 30px;
+    background-color: lighten($basic, 5%);
+    line-height: 30px;
+    padding:0px 6px 0px 0px;
+    height: 30px;
+
+      &:hover {
+        background-color: lighten($basic, 15%);
+        border: $border solid $basic;
+        box-shadow: 0px 0px 2px $basic;
+      }
+
+      &:disabled {
+        color: grayscale(lighten($basic, 30%));
+        background-color: grayscale($basic);
+        border: $border solid grayscale(lighten($basic, 10%));
+        box-shadow: 0px 0px 2px grayscale($basic);
+      }
+  }
+
+}
 button {
   text-transform: uppercase;
 
