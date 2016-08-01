@@ -645,7 +645,7 @@ table {
     background: rgba(21, 112, 78, 0.3); }
     .tabs .manage .tab-pill {
       cursor: pointer;
-      width: 115px;
+      width: 165px;
       float: left;
       height: 30px;
       background: rgba(21, 112, 78, 0.7);
@@ -667,6 +667,9 @@ table {
         .tabs .manage .tab-pill {
           width: 75px;
           font-size: 12px; } }
+      @media (max-width: 1100px) {
+        .tabs .manage .tab-pill {
+          width: 115px; } }
       .tabs .manage .tab-pill:hover, .tabs .manage .tab-pill.active {
         background: rgba(29, 155, 108, 0.7); }
   .tabs .tab {
