@@ -88,17 +88,19 @@
 }
 .map td{
   box-sizing: border-box;
-  line-height: 40px;
+  line-height: 50px;
+  padding:0;
 }
 .inner-top{
   box-sizing: border-box;
-  width: 40px;
+  width: 50px;
   display:block;
   float:left;
+  text-align: center;
 }
 .inner-cell{
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   display: block;
   float:left;
   overflow:hidden;
@@ -110,17 +112,16 @@
 }
 .inner-left{
   box-sizing: border-box;
-  line-height: 40px;
-  height: 40px;
+  line-height: 50px;
+  height: 50px;
+  text-align: center;
   padding: 0px 10px;
   text-transform: uppercase;
 }
 .map .own:after{
-  background:black;
   content:"-";
 }
 .map .own:after{
-  background:black;
   content:"-";
 }
 .map .possible:hover{
@@ -141,7 +142,7 @@
   content:"-";
 }
 .inner-left:nth-child(2n), .inner-top:nth-child(2n) {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
 }
 .games-scroll-control{
   font-size: 30px;

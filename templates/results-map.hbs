@@ -1,19 +1,20 @@
 <h2>Results Map</h2>
+<!-- {{cell = 50}} -->
 <table class="map">
   <tr><td></td>
-    <td colspan="{{players.length}}"  :style="{width: (40*players.length)+px}">
+    <td colspan="{{players.length}}"  :style="{width: (50*players.length)+px}">
     <span class="inner-top" v-for="opponent in players" class="outer">
      {{opponent | person | firstChar}}
     </span>
     </td>
   </tr>
-  <tr><td rowspan={{players.length}} :style="{height: 40*players.length+'px'}">
+  <tr><td rowspan={{players.length}} :style="{height: 50*players.length+'px'}">
     <div class="inner-left" :class="index % 2 ? 'even' : 'odd'" v-for="(index,player) in players">
     {{player | person}}
     </div>
   </td>
     <td>
-      <div :style="{width: 40*players.length+'px', height: 40*players.length+'px'}">
+      <div :style="{width: 50*players.length+'px', height: 50*players.length+'px'}">
       <span v-for="home in players">
         <span class="inner-cell" :class="played(home, away)" @click="createGame(away,home)" v-for="away in players">
           {{resultsBetween(home, away)}}
